@@ -13,7 +13,7 @@ export class HomePage {
 
   teste()
   {
-    alert("Hello world 3 :P!");
+    alert("Hello world 4 ^^!");
   }
 
 }
