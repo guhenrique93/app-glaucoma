@@ -11,4 +11,9 @@ export class HomePage {
 
   }
 
+  teste()
+  {
+    alert("Hello world!");
+  }
+
 }
