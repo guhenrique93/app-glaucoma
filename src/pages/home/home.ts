@@ -1,3 +1,4 @@
+import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -16,4 +17,7 @@ export class HomePage {
     alert("Hello world 4 ^^!");
   }
 
+  onSignUp(): void{
+    this.navCtrl.push(SignupPage)
+  }
 }

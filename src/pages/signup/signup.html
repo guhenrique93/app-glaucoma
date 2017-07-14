@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registre-se</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
+  </h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-icon name="person" item-left> </ion-icon>
+      <ion-input type="text" placeholder="Nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="at" item-left> </ion-icon>
+      <ion-input type="text" placeholder="Usuário"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" item-left> </ion-icon>
+      <ion-input type="email" placeholder="E-mail"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock" item-left> </ion-icon>
+      <ion-input type="password" placeholder="Senha"></ion-input>
+    </ion-item>
+
+    <br>
+    <button ion-button full type="submit">Criar Conta</button>
+  </form>
+
+</ion-content>
