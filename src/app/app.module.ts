@@ -7,6 +7,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { AngularFireModule, FirebaseAppConfig } from 'angularFire2';
+
+const firebaseAppConfig: FirebaseAppConfig = {
+    apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
+    authDomain: "glaucoma-manager.firebaseapp.com",
+    databaseURL: "https://glaucoma-manager.firebaseio.com",
+    storageBucket: "glaucoma-manager.appspot.com",
+    messagingSenderId: "209518446330"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -14,7 +24,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseAppConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
