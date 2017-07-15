@@ -1,3 +1,6 @@
+import { AuthService } from './../providers/auth.service';
+import { HttpModule } from '@angular/http';
+import { UserService } from './../providers/user.service';
 import { SignupPage } from './../pages/signup/signup';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -36,8 +39,11 @@ const firebaseAppConfig: FirebaseAppConfig = {
     SignupPage
   ],
   providers: [
+    AuthService,
     StatusBar,
     SplashScreen,
+    UserService,
+    HttpModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
