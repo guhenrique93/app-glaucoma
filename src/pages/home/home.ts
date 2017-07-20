@@ -1,3 +1,4 @@
+import { AuthService } from './../../providers/auth.service';
 import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -8,7 +9,10 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public authService: AuthService,
+    public navCtrl: NavController
+  ) {
 
   }
 
@@ -19,5 +23,9 @@ export class HomePage {
 
   onSignUp(): void{
     this.navCtrl.push(SignupPage)
+  }
+
+  ionViewCanEnter(): Promise<boolean> {
+      return this.authService.authenticated;
   }
 }

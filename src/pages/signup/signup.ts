@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { FirebaseAuthState } from 'angularFire2';
 import { User } from './../../models/user.model';
 import { AuthService } from './../../providers/auth.service';
@@ -13,7 +14,7 @@ import 'rxjs/add/operator/first';
 })
 export class SignupPage {
 
-signupForm: FormGroup
+  signupForm: FormGroup;
 
   constructor(
     public alertCtrl: AlertController,
@@ -56,6 +57,7 @@ signupForm: FormGroup
                 this.userService.create(formUser)
                   .then(() => {
                       console.log("Usuário cadastrado!");
+                      this.navCtrl.setRoot(HomePage);
                       loading.dismiss();
                   }).catch((error: any) => {
                       console.log(error);
