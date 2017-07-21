@@ -1,3 +1,7 @@
+import { UserProfilePage } from './../pages/user-profile/user-profile';
+import { UserMenuComponent } from './../components/user-menu/user-menu.component';
+import { UserInfoComponent } from './../components/user-info/user-info.component';
+import { CustomLoggedHeaderComponent } from './../components/custom-logged-header/custom-logged-header.component';
 import { SigninPage } from './../pages/signin/signin';
 import { AuthService } from './../providers/auth.service';
 import { HttpModule } from '@angular/http';
@@ -29,10 +33,14 @@ const firebaseAuthConfig = {
 
 @NgModule({
   declarations: [
+    CustomLoggedHeaderComponent,
     MyApp,
     HomePage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    UserInfoComponent,
+    UserMenuComponent,
+    UserProfilePage
   ],
   imports: [
     BrowserModule,
@@ -41,10 +49,15 @@ const firebaseAuthConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    CustomLoggedHeaderComponent,
     MyApp,
     HomePage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    UserInfoComponent,
+    UserMenuComponent,
+    UserProfilePage
+    
   ],
   providers: [
     AuthService,

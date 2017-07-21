@@ -55,7 +55,7 @@ export class SigninPage {
   onHome(): void {
     this.navCtrl.push(HomePage)
       .then((hasAccess: boolean) => {
-        console.log('Autorizado a entrar na página', hasAccess);
+        console.log('Autorizado a entrar na página: ', hasAccess);
       }).catch(err => {        
         console.log('Não autorizado a entrar na página: ', err);
       });
