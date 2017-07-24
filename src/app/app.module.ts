@@ -1,3 +1,4 @@
+import { SignupEmailPage } from './../pages/signup-email/signup-email';
 import { UserProfilePage } from './../pages/user-profile/user-profile';
 import { UserMenuComponent } from './../components/user-menu/user-menu.component';
 import { UserInfoComponent } from './../components/user-info/user-info.component';
@@ -38,6 +39,7 @@ const firebaseAuthConfig = {
     HomePage,
     SigninPage,
     SignupPage,
+    SignupEmailPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage
@@ -54,10 +56,10 @@ const firebaseAuthConfig = {
     HomePage,
     SigninPage,
     SignupPage,
+    SignupEmailPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage
-    
   ],
   providers: [
     AuthService,

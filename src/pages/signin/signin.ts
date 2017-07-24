@@ -1,3 +1,4 @@
+import { SignupEmailPage } from './../signup-email/signup-email';
 import { HomePage } from './../home/home';
 import { AuthService } from './../../providers/auth.service';
 import { SignupPage } from './../signup/signup';
@@ -49,7 +50,8 @@ export class SigninPage {
   }
 
   onSignup(): void {
-    this.navCtrl.push(SignupPage);
+    //this.navCtrl.push(SignupPage);
+    this.navCtrl.push(SignupEmailPage);
   }
 
   onHome(): void {
