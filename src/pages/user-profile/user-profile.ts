@@ -18,8 +18,7 @@ export class UserProfilePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public userService: UserService
-  ) {
-  }
+  ) {}
 
   ionViewCanEnter(): Promise<boolean> {
       return this.authService.authenticated;
@@ -32,4 +31,18 @@ export class UserProfilePage {
       })
   }
 
+  onSubmit(event: Event): void {
+    event.preventDefault();
+    this.editUser();
+  }
+
+  private editUser(): void {
+    this.userService
+      .edit( {
+        name: this.currentUser.name,
+        username: this.currentUser.username
+      }).then(() => {
+          this.canEdit = false;
+      });
+  }
 }
