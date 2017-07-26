@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
+  </h1>
+
+  <form name="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    
+    <ion-item>
+      <ion-icon name="calendar" item-left color="primary"> </ion-icon>
+      <ion-datetime 
+          displayFormat="DD/MMM/YYYY" 
+          doneText="Ok"
+          name="birthday" 
+          [(ngModel)]="birthday" (ionChange)="changed=true">
+      </ion-datetime>
+    </ion-item>
+
+    <br>
+    <button ion-button full type="submit" [disabled]="!changed">Continue</button> 
+  </form>
+
+</ion-content>

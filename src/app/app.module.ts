@@ -1,3 +1,5 @@
+import { SignupBirthdayPage } from './../pages/signup-birthday/signup-birthday';
+import { SignupNamePage } from './../pages/signup-name/signup-name';
 import { SignupEmailPage } from './../pages/signup-email/signup-email';
 import { UserProfilePage } from './../pages/user-profile/user-profile';
 import { UserMenuComponent } from './../components/user-menu/user-menu.component';
@@ -39,7 +41,9 @@ const firebaseAuthConfig = {
     HomePage,
     SigninPage,
     SignupPage,
+    SignupBirthdayPage,
     SignupEmailPage,
+    SignupNamePage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage
@@ -56,7 +60,9 @@ const firebaseAuthConfig = {
     HomePage,
     SigninPage,
     SignupPage,
+    SignupBirthdayPage,
     SignupEmailPage,
+    SignupNamePage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage

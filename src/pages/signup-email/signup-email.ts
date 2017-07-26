@@ -1,3 +1,5 @@
+import { User } from './../../models/user.model';
+import { SignupNamePage } from './../signup-name/signup-name';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup } from '@angular/forms/';
 import { FormBuilder } from '@angular/forms/';
@@ -15,6 +17,7 @@ import { NavController, NavParams, Loading, LoadingController, AlertController }
 export class SignupEmailPage {
 
  signupForm: FormGroup;
+ user: User;
 
   constructor(
     public alertCtrl: AlertController,
@@ -23,7 +26,7 @@ export class SignupEmailPage {
     public loadingCtrl: LoadingController,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public userService: UserService
+    public userService: UserService,
   ) {
       let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -31,6 +34,8 @@ export class SignupEmailPage {
         email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegex)])],
         password: ['', [Validators.required, Validators.minLength(6)]]
       });
+
+      this.user = navParams.get('user'); 
   }
 
   onSubmit(): void {
@@ -44,8 +49,11 @@ export class SignupEmailPage {
                   }).then((authState: FirebaseAuthState) => {
                     delete formUser.password;  
                     formUser.uid = authState.auth.uid;
+                    this.user.uid = authState.auth.uid;
                     
-                    this.userService.create(formUser)
+                    this.user.email = formUser.email;
+
+                    this.userService.create(this.user)
                       .then(() => {
                           console.log("Usuário cadastrado!");
                           this.navCtrl.setRoot(HomePage);

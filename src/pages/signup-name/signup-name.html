@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
+  </h1>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    
+    <ion-item>
+      <ion-icon name="person" item-left color="primary"> </ion-icon>
+      <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+    </ion-item>
+
+    <br>
+    <button ion-button full type="submit" [disabled]="signupForm.invalid">Continue</button>
+  </form>
+
+</ion-content>

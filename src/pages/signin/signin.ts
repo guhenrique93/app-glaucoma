@@ -1,7 +1,6 @@
-import { SignupEmailPage } from './../signup-email/signup-email';
+import { SignupNamePage } from './../signup-name/signup-name';
 import { HomePage } from './../home/home';
 import { AuthService } from './../../providers/auth.service';
-import { SignupPage } from './../signup/signup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
@@ -50,8 +49,7 @@ export class SigninPage {
   }
 
   onSignup(): void {
-    //this.navCtrl.push(SignupPage);
-    this.navCtrl.push(SignupEmailPage);
+    this.navCtrl.push(SignupNamePage);
   }
 
   onHome(): void {
