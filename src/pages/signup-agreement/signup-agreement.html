@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Declarações Legais</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button center block (click)="openAgreement()">Ler termos de uso</button>
+
+  <h3 text-center>Desejo permanecer no anonimato, mas concordo que meus dados informados no aplicativo possam ser utilizados para a pesquisa em benefício da luta contra o glaucoma.</h3>
+  
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <ion-list radio-group formControlName="agreement">
+      
+      <ion-item>
+        <ion-label>Sim</ion-label>
+        <ion-radio value="yes" ></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Não</ion-label>
+        <ion-radio value="no"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Perguntar depois</ion-label>
+        <ion-radio value="ask later"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <br>
+    <button ion-button full type="submit" [disabled]="signupForm.invalid">Confirmar</button>
+  </form>
+
+</ion-content>

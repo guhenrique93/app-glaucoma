@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Informe seus dados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
+  </h1>
+
+  <h2 text-center>Qual o seu gênero?</h2>
+  
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <ion-list radio-group formControlName="gender">
+      
+      <ion-item>
+        <ion-icon name="male" item-left color="primary"></ion-icon>
+        <ion-label>Masculino</ion-label>
+        <ion-radio value="male" ></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="female" item-left color="primary"></ion-icon>
+        <ion-label>Feminino</ion-label>
+        <ion-radio value="female"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="transgender" item-left color="primary"></ion-icon>
+        <ion-label>Outros</ion-label>
+        <ion-radio value="other"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <br>
+    <button ion-button full type="submit" [disabled]="signupForm.invalid">Continuar</button>
+  </form>
+
+</ion-content>

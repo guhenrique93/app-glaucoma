@@ -1,7 +1,9 @@
-export class User {
+export class User {    
+
     public name: string;
     public username: string;
     public email: string;
+    public password: string;
     public uid: string;
     public gender: string;
     public birthday: Date;

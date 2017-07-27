@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Sign Up</ion-title>
+    <ion-title>Informe seus dados</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,15 +13,17 @@
     <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
   </h1>
 
+    <h2 text-center>Qual o seu nome?</h2>
+
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     
     <ion-item>
       <ion-icon name="person" item-left color="primary"> </ion-icon>
-      <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+      <ion-input type="text" placeholder="Nome" formControlName="name"></ion-input>
     </ion-item>
 
     <br>
-    <button ion-button full type="submit" [disabled]="signupForm.invalid">Continue</button>
+    <button ion-button full type="submit" [disabled]="signupForm.invalid">Continuar</button>
   </form>
 
 </ion-content>

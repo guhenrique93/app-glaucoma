@@ -1,16 +1,16 @@
-import { SignupBirthdayPage } from './../signup-birthday/signup-birthday';
+import { SignupBirthplacePage } from './../signup-birthplace/signup-birthplace';
+import { FormGroup } from '@angular/forms/';
+import { FormBuilder } from '@angular/forms/';
+import { Validators } from '@angular/forms/';
 import { User } from './../../models/user.model';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms/';
-import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-signup-name',
-  templateUrl: 'signup-name.html',
+  selector: 'page-signup-gender',
+  templateUrl: 'signup-gender.html',
 })
-
-export class SignupNamePage {
+export class SignupGenderPage {
 
   signupForm: FormGroup;
   user: User;
@@ -21,19 +21,19 @@ export class SignupNamePage {
     public navParams: NavParams,
   ) {
       this.signupForm = this.formBuilder.group({
-        name: ['', [Validators.required, Validators.minLength(3)]]
+        gender: ['', [Validators.required]]
       });
 
-      this.user = new User();
+      this.user = navParams.get('user'); 
   }
 
   onSubmit(): void {
     let formUser = this.signupForm.value;
     
-    this.user.name = formUser.name;
+    this.user.gender = formUser.gender;
 
     console.log("Chamando próxima página...");
 
-    this.navCtrl.push(SignupBirthdayPage, {user: this.user});
+    this.navCtrl.push(SignupBirthplacePage, {user: this.user});
   }
 }

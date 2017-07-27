@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Informe seus dados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="school" color="primary"></ion-icon> 
+  </h1>
+
+  <h2 text-center>Qual a sua escolaridade?</h2>
+  
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <ion-list radio-group formControlName="scholarity">
+      
+      <ion-item>
+        <ion-label>Não lê e/ou não escreve bem</ion-label>
+        <ion-radio value="Não lê e/ou não escreve bem" ></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Lê e escreve bem</ion-label>
+        <ion-radio value="Lê e escreve bem"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ensino superior completo</ion-label>
+        <ion-radio value="Ensino superior completo"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Pós-graduação, Mestrado</ion-label>
+        <ion-radio value="Pós-graduação, Mestrado"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <br>
+    <button ion-button full type="submit" [disabled]="signupForm.invalid">Continuar</button>
+  </form>
+
+</ion-content>

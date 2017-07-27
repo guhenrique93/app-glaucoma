@@ -1,3 +1,9 @@
+import { ModalAgreementPage } from './../pages/modal-agreement/modal-agreement';
+import { SignupPasswordPage } from './../pages/signup-password/signup-password';
+import { SignupAgreementPage } from './../pages/signup-agreement/signup-agreement';
+import { SignupScholarityPage } from './../pages/signup-scholarity/signup-scholarity';
+import { SignupResidenceplacePage } from './../pages/signup-residenceplace/signup-residenceplace';
+import { SignupGenderPage } from './../pages/signup-gender/signup-gender';
 import { SignupBirthdayPage } from './../pages/signup-birthday/signup-birthday';
 import { SignupNamePage } from './../pages/signup-name/signup-name';
 import { SignupEmailPage } from './../pages/signup-email/signup-email';
@@ -20,6 +26,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule, FirebaseAppConfig, FirebaseAuthConfig, AuthProviders, AuthMethods } from 'angularFire2';
+import { SignupBirthplacePage } from "../pages/signup-birthplace/signup-birthplace";
 
 const firebaseAppConfig: FirebaseAppConfig = {
     apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
@@ -39,11 +46,18 @@ const firebaseAuthConfig = {
     CustomLoggedHeaderComponent,
     MyApp,
     HomePage,
+    ModalAgreementPage,
     SigninPage,
     SignupPage,
+    SignupAgreementPage,
     SignupBirthdayPage,
+    SignupBirthplacePage,
     SignupEmailPage,
+    SignupGenderPage,
     SignupNamePage,
+    SignupPasswordPage,
+    SignupResidenceplacePage,
+    SignupScholarityPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage
@@ -58,11 +72,18 @@ const firebaseAuthConfig = {
     CustomLoggedHeaderComponent,
     MyApp,
     HomePage,
+    ModalAgreementPage,
     SigninPage,
     SignupPage,
+    SignupAgreementPage,
     SignupBirthdayPage,
+    SignupBirthplacePage,
     SignupEmailPage,
+    SignupGenderPage,
     SignupNamePage,
+    SignupPasswordPage,
+    SignupResidenceplacePage,
+    SignupScholarityPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage

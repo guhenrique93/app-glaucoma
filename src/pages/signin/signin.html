@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Sign In</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,15 +20,15 @@
     </ion-item>
     <ion-item>
       <ion-icon name="lock" item-left color="primary"> </ion-icon>
-      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
     </ion-item>
 
     <br>
-    <button ion-button full type="submit" [disabled]="signinForm.invalid">Enter</button>
+    <button ion-button full type="submit" [disabled]="signinForm.invalid">Entrar</button>
   </form>
 
-    <button ion-button full clear textx-center (click)="onSignup()">Sign Up</button>
+    <button ion-button full clear textx-center (click)="onSignup()">Cadastre-se</button>
     <button ion-button full textx-center (click)="onHome()">Home Test</button>
-    <button ion-button full textx-center (click)="onLogout()">Logout</button>
+    <button ion-button full textx-center (click)="onLogout()">Sair</button>
   
 </ion-content>

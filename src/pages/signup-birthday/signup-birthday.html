@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Sign Up</ion-title>
+    <ion-title>Informe seus dados</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,6 +12,8 @@
   <h1 text-center>
     <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon> 
   </h1>
+
+    <h2 text-center>Quando você nasceu?</h2>
 
   <form name="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     
@@ -26,7 +28,7 @@
     </ion-item>
 
     <br>
-    <button ion-button full type="submit" [disabled]="!changed">Continue</button> 
+    <button ion-button full type="submit" [disabled]="!changed">Continuar</button> 
   </form>
 
 </ion-content>

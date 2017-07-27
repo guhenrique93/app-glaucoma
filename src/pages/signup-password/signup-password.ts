@@ -1,31 +1,30 @@
-import { SignupPasswordPage } from './../signup-password/signup-password';
-import { User } from './../../models/user.model';
+import { SignupAgreementPage } from './../signup-agreement/signup-agreement';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms/';
+import { User } from './../../models/user.model';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-signup-email',
-  templateUrl: 'signup-email.html',
+  selector: 'page-signup-password',
+  templateUrl: 'signup-password.html',
 })
-export class SignupEmailPage {
+export class SignupPasswordPage {
 
- signupForm: FormGroup;
- user: User;
-
+  signupForm: FormGroup;
+  user: User;
+  
   constructor(
     public formBuilder: FormBuilder,
     public navCtrl: NavController, 
     public navParams: NavParams,
   ) {
-      let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
       this.signupForm = this.formBuilder.group({
-        email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegex)])],
-        emailConfirm: ['', Validators.compose([
-          Validators.required, 
-          Validators.pattern(emailRegex),
-          this.matchOtherValidator('email')])],
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          passwordConfirm: ['', [
+            Validators.required, 
+            Validators.minLength(6),
+            this.matchOtherValidator('password')
+          ]]
       });
 
       this.user = navParams.get('user'); 
@@ -34,11 +33,11 @@ export class SignupEmailPage {
   onSubmit(): void {
     let formUser = this.signupForm.value;
     
-    this.user.email = formUser.email;
+    this.user.password = formUser.password;
 
     console.log("Chamando próxima página...");
 
-    this.navCtrl.push(SignupPasswordPage, {user: this.user});
+    this.navCtrl.push(SignupAgreementPage, {user: this.user});
   }
 
   matchOtherValidator (otherControlName: string) {
@@ -78,5 +77,4 @@ export class SignupEmailPage {
 
     }
   }
-
 }
