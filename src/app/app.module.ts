@@ -28,7 +28,7 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule, FirebaseAppConfig, FirebaseAuthConfig, AuthProviders, AuthMethods } from 'angularFire2';
 import { SignupBirthplacePage } from "../pages/signup-birthplace/signup-birthplace";
 
-const firebaseAppConfig: FirebaseAppConfig = {
+const firebaseAppConfig = {
     apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
     authDomain: "glaucoma-manager.firebaseapp.com",
     databaseURL: "https://glaucoma-manager.firebaseio.com",
