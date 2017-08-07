@@ -1,28 +1,21 @@
-import { EvaluationPage } from './../evaluation/evaluation';
 import { AuthService } from './../../providers/auth.service';
-import { SignupPage } from './../signup/signup';
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
+
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-evaluation',
+  templateUrl: 'evaluation.html',
 })
-export class HomePage {
+export class EvaluationPage {
 
   constructor(
     public authService: AuthService,
     public menuCtrl: MenuController,
     public navCtrl: NavController
-  ) {
+  ) {}
 
-  }
-
-  teste()
-  {
-    this.navCtrl.setRoot(EvaluationPage);
-  }
-
+  
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'user-menu');
   }

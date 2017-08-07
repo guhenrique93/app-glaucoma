@@ -1,3 +1,4 @@
+import { EvaluationPage } from './../pages/evaluation/evaluation';
 import { ModalAgreementPage } from './../pages/modal-agreement/modal-agreement';
 import { SignupPasswordPage } from './../pages/signup-password/signup-password';
 import { SignupAgreementPage } from './../pages/signup-agreement/signup-agreement';
@@ -44,6 +45,7 @@ const firebaseAuthConfig = {
 @NgModule({
   declarations: [
     CustomLoggedHeaderComponent,
+    EvaluationPage,
     MyApp,
     HomePage,
     ModalAgreementPage,
@@ -70,6 +72,7 @@ const firebaseAuthConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     CustomLoggedHeaderComponent,
+    EvaluationPage,    
     MyApp,
     HomePage,
     ModalAgreementPage,
