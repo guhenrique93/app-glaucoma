@@ -19,7 +19,7 @@ export class HomePage {
 
   teste()
   {
-    alert("Hello world 4 ^^!");
+    alert("Teste!");
   }
 
   onSignUp(): void{
