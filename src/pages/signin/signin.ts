@@ -81,4 +81,8 @@ export class SigninPage {
       buttons: ['Ok']
     }).present();
   }
+
+  onHomeTeste(): void{
+    this.navCtrl.setRoot(HomePage);
+  }
 }

@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a opção quanto à ocorrência ou não de <strong>uveíte</strong>, seja em olho direito (OD) ou esquerdo (OE)
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <h4>Uveíte em OD</h4>  
+    <ion-list radio-group formControlName="riskFactorOD">
+      
+      <ion-item>
+        <ion-label>Turvação visual por menos de 15 dias</ion-label>
+        <ion-radio value="15"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Turvação visual por até 60 dias</ion-label>
+        <ion-radio value="-60"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Turvação visual por mais de 60 dias</ion-label>
+        <ion-radio value="+60"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nunca</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <h4>Uveíte em OE</h4>  
+    <ion-list radio-group formControlName="riskFactorOE">
+      
+      <ion-item>
+        <ion-label>Turvação visual por menos de 15 dias</ion-label>
+        <ion-radio value="15"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Turvação visual por até 60 dias</ion-label>
+        <ion-radio value="-60"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Turvação visual por mais de 60 dias</ion-label>
+        <ion-radio value="+60"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nunca</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> a inflamação das camadas internas ao olho recebe esta denominação. A consulta ao seu prontuário é especialmente útil,
+caso o profissional que lhe assistiu faça anotações detalhadas, e você pode solicitar cópia do mesmo.
+</p>
+
+</ion-content>

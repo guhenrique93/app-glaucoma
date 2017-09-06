@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong> (isto é, “fenótipo que traduz caracteres raciais”)
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <ion-list radio-group formControlName="riskFactor">
+      
+      <ion-item>
+        <ion-label>Caucasiana</ion-label>
+        <ion-radio value="caucasiana"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Asiática</ion-label>
+        <ion-radio value="asiatica"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Africana</ion-label>
+        <ion-radio value="africana"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Incerteza</ion-label>
+        <ion-radio value="incerteza"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> (a) para assinalar a sua condição racial/genética, considere, além da cor da pele e traços físicos próprios de cada raça, sua
+ascendência até primeiro grau, isto é, até pai e mãe apenas; (b) a opção “Incerteza” deve ser escolhida quando o avaliando de risco
+(você) não consegue nível razoável (conforme seu julgamento) de certeza para assinalar uma opção anterior.
+  </p>
+
+</ion-content>

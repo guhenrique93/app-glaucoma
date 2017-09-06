@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a opção quanto à ocorrência ou não de <strong>alta miopia</strong>, seja em olho direito (OD) ou esquerdo (OE)
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <h4>Em OD</h4>  
+    <ion-list radio-group formControlName="riskFactorOD">
+      
+      <ion-item>
+        <ion-label>Alta miopia presente</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Não possui alta miopia</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <h4>Em OE</h4>  
+    <ion-list radio-group formControlName="riskFactorOE">
+      
+       <ion-item>
+        <ion-label>Alta miopia presente</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Não possui alta miopia</ion-label>
+        <ion-radio value="0"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> a alta miopia aqui considerada é a miopia de <strong>cinco graus</strong> ou acima. A consulta ao seu prontuário ou à prescrição de óculos
+pode lhe ser útil. O termo miopia degenerativa pode ser usado no lugar de “alta miopia”. <strong>Importante</strong> mesmo que use tenha
+realizado cirurgia para miopia, tenha “zerado o grau” e não mais tenha necessidade de qualquer correção visual (lentes de contato ou
+óculos, etc.), uma vez alto míope, sempre o será: portanto, assinale a opção no(s) olho(s) correspondente(s), isto é relevante!
+</p>
+
+</ion-content>

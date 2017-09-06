@@ -1,3 +1,4 @@
+import { EvaluationFR2Page } from './../evaluation-fr-02/evaluation-fr-02';
 import { AuthService } from './../../providers/auth.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
@@ -22,5 +23,9 @@ export class EvaluationPage {
 
   ionViewCanEnter(): Promise<boolean> {
       return this.authService.authenticated;
+  }
+
+  evaluation() {
+      this.navCtrl.push(EvaluationFR2Page);
   }
 }

@@ -18,9 +18,9 @@ export class HomePage {
 
   }
 
-  teste()
+  evaluation()
   {
-    this.navCtrl.setRoot(EvaluationPage);
+    this.navCtrl.push(EvaluationPage);
   }
 
   ionViewDidLoad() {
