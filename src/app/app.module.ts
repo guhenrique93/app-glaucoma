@@ -1,3 +1,7 @@
+import { EvaluationFR12Page } from './../pages/evaluation-fr-12/evaluation-fr-12';
+import { EvaluationFR11Page } from './../pages/evaluation-fr-11/evaluation-fr-11';
+import { EvaluationFR10Page } from './../pages/evaluation-fr-10/evaluation-fr-10';
+import { EvaluationFR8Page } from './../pages/evaluation-fr-08/evaluation-fr-08';
 import { EvaluationFR7Page } from './../pages/evaluation-fr-07/evaluation-fr-07';
 import { EvaluationFR6Page } from './../pages/evaluation-fr-06/evaluation-fr-06';
 import { EvaluationFR3Page } from './../pages/evaluation-fr-03/evaluation-fr-03';
@@ -34,6 +38,7 @@ import { AngularFireModule, FirebaseAppConfig, FirebaseAuthConfig, AuthProviders
 import { SignupBirthplacePage } from "../pages/signup-birthplace/signup-birthplace";
 import { EvaluationFR4Page } from "../pages/evaluation-fr-04/evaluation-fr-04";
 import { EvaluationFR5Page } from "../pages/evaluation-fr-05/evaluation-fr-05";
+import { EvaluationFR9Page } from "../pages/evaluation-fr-09/evaluation-fr-09";
 
 const firebaseAppConfig = {
     apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
@@ -58,6 +63,11 @@ const firebaseAuthConfig = {
     EvaluationFR5Page,
     EvaluationFR6Page,
     EvaluationFR7Page,
+    EvaluationFR8Page,
+    EvaluationFR9Page,
+    EvaluationFR10Page,
+    EvaluationFR11Page,
+    EvaluationFR12Page,
     MyApp,
     HomePage,
     ModalAgreementPage,
@@ -91,6 +101,11 @@ const firebaseAuthConfig = {
     EvaluationFR5Page,
     EvaluationFR6Page,
     EvaluationFR7Page,
+    EvaluationFR8Page,
+    EvaluationFR9Page,
+    EvaluationFR10Page,
+    EvaluationFR11Page,
+    EvaluationFR12Page,
     MyApp,
     HomePage,
     ModalAgreementPage,

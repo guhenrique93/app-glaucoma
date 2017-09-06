@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a opção caso tenha informação sobre os <strong>valores de sua pressão intra-ocultar</strong> (PIO), disponível em seu prontuário
+médico. Selecione as três últimas medidas obtidas em cada olho, calcule a média das medidas, e informe a média por olho.
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+  <h4>Média das últimas medidas da PIO em OD</h4>  
+  <ion-item>  
+    <ion-input type="number" placeholder="0" formControlName="riskFactorA"></ion-input>
+  </ion-item>  
+
+  <h4>Média das últimas medidas da PIO em OE</h4>  
+  <ion-item>  
+    <ion-input type="number" placeholder="0" formControlName="riskFactorB"></ion-input>
+  </ion-item>  
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> (a) caso não tenha estas medidas, deixar em branco. Tais medidas ajudam na acurácia da medida de risco; (b) caso tenha
+menos de três medidas, informe a média ou o valor único. São números inteiros, em geral entre 10 e 40, para cada olho.
+</p>
+
+</ion-content>

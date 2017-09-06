@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a melhor opção para sua condição em relação ao <strong>sedentarismo</strong>. As questões se referem à atividade física (AF).
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+      
+    <h4>Quanto à freqüência semanal da AF</h4>  
+    <ion-list radio-group formControlName="riskFactorA" text-wrap>
+      
+        <ion-item>
+        <ion-label>Nenhuma prática regular de atividade física</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>De 01 a 03 vezes na semana</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>De 04 a mais vezes na semana</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <h4>Quanto à duração diária da AF</h4>  
+    <ion-list radio-group formControlName="riskFactorB" text-wrap>
+      
+      <ion-item>
+        <ion-label>Máxima de 15 minutos no dia da atividade</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Entre 15 e 30 minutos no dia da atividade</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Acima de 30 minutos no dia da atividade</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> (a) a atividade física aqui considerada é a aeróbica ou aquela com aumento mínimo da freqüência cardíaca (FC), como
+caminhadas com boa velocidade, ou ginásticas com nível de esforço adequado; (b) limpeza de casa, trânsito a pé no local de trabalho
+e atividades sem aumento sustentado da FC não devem ser consideradas aqui como liberadoras do sedentarismo.
+</p>
+
+</ion-content>

@@ -8,59 +8,77 @@
 <ion-content padding>
 
 <h3>
-  Assinale a melhor opção quanto a ter sofrido ou não <strong>traumatismo ocular</strong>, conforme olho direito (OD) ou esquerdo (OE)
+  FR03) Assinale a melhor opção quanto a ter sofrido ou não <strong>traumatismo ocular</strong>, conforme olho direito (OD) ou esquerdo (OE)
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <h4>Trauma em OD</h4>  
-    <ion-list radio-group formControlName="riskFactorOD">
+    <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
-        <ion-label>Turvação visual por mais de 03 dias</ion-label>
-        <ion-radio value="3"></ion-radio>
+        <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
+        <ion-radio (ionSelect)="touched()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio value="10"></ion-radio>
+        <ion-radio (ionSelect)="touched()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Turvação visual por mais de 30 dias</ion-label>
-        <ion-radio value="30"></ion-radio>
+        <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
+        <ion-radio (ionSelect)="touched()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-radio (ionSelect)="touched()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
 
     <h4>Trauma em OE</h4>  
-    <ion-list radio-group formControlName="riskFactorOE">
+    <ion-list radio-group formControlName="riskFactorOE" text-wrap>
       
       <ion-item>
-        <ion-label>Turvação visual por mais de 03 dias</ion-label>
-        <ion-radio value="3"></ion-radio>
+        <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
+        <ion-radio (ionSelect)="touched()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio value="10"></ion-radio>
+        <ion-radio (ionSelect)="touched()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Turvação visual por mais de 30 dias</ion-label>
-        <ion-radio value="30"></ion-radio>
+        <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
+        <ion-radio (ionSelect)="touched()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-radio (ionSelect)="touched()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
+
+<div *ngIf="!answered">
+  <h3>Caso não responda a questão de N.º 03, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+  <ion-list radio-group formControlName="why" text-wrap>
+    
+    <ion-item>
+      <ion-label>Não compreendi a questão</ion-label>
+      <ion-radio value="compreensao"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Não tenho informações sobre isto</ion-label>
+      <ion-radio value="informacao"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+
+</div>
 
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
   </form>

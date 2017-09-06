@@ -3,3 +3,4 @@
 -mostrar modais das escolhas para 'perguntar depois' e 'nao' do termo de uso
 -cadastro e utilizacao do termo de uso no BD
 -cadastro e utilizacao do texto de apresentacao do questionario de avaliacao no BD
+-validacoes das respostas dos fatores de risco

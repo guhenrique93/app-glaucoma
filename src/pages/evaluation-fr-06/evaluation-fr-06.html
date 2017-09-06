@@ -13,7 +13,7 @@
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <h4>Em OD</h4>  
-    <ion-list radio-group formControlName="riskFactorOD">
+    <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
         <ion-label>Alta miopia presente</ion-label>
@@ -28,7 +28,7 @@
     </ion-list>
 
     <h4>Em OE</h4>  
-    <ion-list radio-group formControlName="riskFactorOE">
+    <ion-list radio-group formControlName="riskFactorOE" text-wrap>
       
        <ion-item>
         <ion-label>Alta miopia presente</ion-label>

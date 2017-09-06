@@ -1,16 +1,16 @@
-import { EvaluationFR8Page } from './../evaluation-fr-08/evaluation-fr-08';
+import { EvaluationFR9Page } from './../evaluation-fr-09/evaluation-fr-09';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-evaluation-fr-07',
-  templateUrl: 'evaluation-fr-07.html',
+  selector: 'page-evaluation-fr-08',
+  templateUrl: 'evaluation-fr-08.html',
 })
-export class EvaluationFR7Page {
-
-  evaluationForm: FormGroup;
+export class EvaluationFR8Page {
+  
+ evaluationForm: FormGroup;
   
   constructor(
     public authService: AuthService,
@@ -35,11 +35,11 @@ export class EvaluationFR7Page {
   onSubmit(): void {
     let evaluationForm = this.evaluationForm.value;
     
-    let fr03UmFamiliar = evaluationForm.riskFactorA;
-    let fr03MaisDeUmFamiliar = evaluationForm.riskFactorB;
+    let fr03Diabetes = evaluationForm.riskFactorA;
+    let fr03Complicacoes = evaluationForm.riskFactorB;
 
     ///TODO: Salvar a resposta no BD
-    this.navCtrl.push(EvaluationFR8Page);
+    this.navCtrl.push(EvaluationFR9Page);
   }
 }
 

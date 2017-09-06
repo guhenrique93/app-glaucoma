@@ -1,7 +1,9 @@
+import { UserService } from './../../providers/user.service';
 import { EvaluationFR2Page } from './../evaluation-fr-02/evaluation-fr-02';
 import { AuthService } from './../../providers/auth.service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { User } from "../../models/user.model";
 
 
 @Component({
@@ -10,10 +12,13 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 })
 export class EvaluationPage {
 
+    user: User;
+
   constructor(
     public authService: AuthService,
     public menuCtrl: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public userService: UserService
   ) {}
 
   
@@ -22,7 +27,12 @@ export class EvaluationPage {
   }
 
   ionViewCanEnter(): Promise<boolean> {
-      return this.authService.authenticated;
+       this.userService.currentUser
+      .subscribe((user: User) => {
+        this.user = user;
+      })
+      
+      return this.authService.authenticated;      
   }
 
   evaluation() {

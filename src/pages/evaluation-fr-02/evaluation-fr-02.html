@@ -7,42 +7,71 @@
 </ion-header>
 <ion-content padding>
 
+<div *ngIf="!incerteza">
 <h3>
-  Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong> (isto é, “fenótipo que traduz caracteres raciais”)
+  FR02) Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong> (isto é, “fenótipo que traduz caracteres raciais”)
 </h3>
-
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
-    <ion-list radio-group formControlName="riskFactor">
-      
-      <ion-item>
-        <ion-label>Caucasiana</ion-label>
-        <ion-radio value="caucasiana"></ion-radio>
-      </ion-item>
+  <ion-list radio-group formControlName="riskFactor" text-wrap>
+    
+    <ion-item>
+      <ion-label>Caucasiana ou "Branca"</ion-label>
+      <ion-radio value="caucasiana"></ion-radio>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>Asiática</ion-label>
-        <ion-radio value="asiatica"></ion-radio>
-      </ion-item>
+    <ion-item>
+      <ion-label>Asiática ou "Amarela"</ion-label>
+      <ion-radio value="asiatica"></ion-radio>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>Africana</ion-label>
-        <ion-radio value="africana"></ion-radio>
-      </ion-item>
+    <ion-item>
+      <ion-label>Africana ou "Parda"</ion-label>
+      <ion-radio value="africana"></ion-radio>
+    </ion-item>
 
-      <ion-item>
-        <ion-label>Incerteza</ion-label>
-        <ion-radio value="incerteza"></ion-radio>
-      </ion-item>
+    <ion-item>
+      <ion-label>Incerteza</ion-label>
+      <ion-radio value="incerteza"></ion-radio>
+    </ion-item>
 
-    </ion-list>
+  </ion-list>
 
-    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
-  </form>
+  <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+</form>
 
-  <p>
-    <strong>Atenção:</strong> (a) para assinalar a sua condição racial/genética, considere, além da cor da pele e traços físicos próprios de cada raça, sua
+<p>
+  <strong>Atenção:</strong> (a) para assinalar a sua condição racial/genética, considere, além da cor da pele e traços físicos próprios de cada raça, sua
 ascendência até primeiro grau, isto é, até pai e mãe apenas; (b) a opção “Incerteza” deve ser escolhida quando o avaliando de risco
 (você) não consegue nível razoável (conforme seu julgamento) de certeza para assinalar uma opção anterior.
-  </p>
+</p>
+
+</div>
+
+<div *ngIf="incerteza">
+<h3>Informe o motivo de sua resposta em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+<form [formGroup]="evaluationForm2" (ngSubmit)="onSubmit2(); $event.preventDefault()">
+  <ion-list radio-group formControlName="why" text-wrap>
+    
+    <ion-item>
+      <ion-label>Não compreendi a questão</ion-label>
+      <ion-radio value="compreensao"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Não tenho informações sobre isto</ion-label>
+      <ion-radio value="informacao"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Não desejo responder</ion-label>
+      <ion-radio value="desejo"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button full type="submit" [disabled]="evaluationForm2.invalid">Confirmar</button>
+  <button ion-button full (click)="voltar()">Voltar</button>
+</form>
+</div>
 
 </ion-content>

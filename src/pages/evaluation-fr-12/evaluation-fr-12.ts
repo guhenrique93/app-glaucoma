@@ -1,18 +1,17 @@
-import { EvaluationFR8Page } from './../evaluation-fr-08/evaluation-fr-08';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-evaluation-fr-07',
-  templateUrl: 'evaluation-fr-07.html',
+  selector: 'page-evaluation-fr-12',
+  templateUrl: 'evaluation-fr-12.html',
 })
-export class EvaluationFR7Page {
+export class EvaluationFR12Page {
 
-  evaluationForm: FormGroup;
-  
-  constructor(
+    evaluationForm: FormGroup;
+
+   constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
@@ -20,7 +19,7 @@ export class EvaluationFR7Page {
   ) {
     this.evaluationForm = this.formBuilder.group({
         riskFactorA: ['', [Validators.required]],
-        riskFactorB: ['', [Validators.required]]
+        riskFactorB: ['', [Validators.minLength(0)]]
       });
   }
 
@@ -33,13 +32,14 @@ export class EvaluationFR7Page {
   }
 
   onSubmit(): void {
-    let evaluationForm = this.evaluationForm.value;
+    //let evaluationForm = this.evaluationForm.value;
     
-    let fr03UmFamiliar = evaluationForm.riskFactorA;
-    let fr03MaisDeUmFamiliar = evaluationForm.riskFactorB;
+    //let fr03UmFamiliar = evaluationForm.riskFactorA;
+    //let fr03MaisDeUmFamiliar = evaluationForm.riskFactorB;
 
     ///TODO: Salvar a resposta no BD
-    this.navCtrl.push(EvaluationFR8Page);
+    alert("questionário respondido com sucesso! ");
+    //this.navCtrl.push(EvaluationFR9Page);
   }
 }
 

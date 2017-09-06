@@ -11,6 +11,8 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 export class EvaluationFR2Page {
 
   evaluationForm: FormGroup;
+  evaluationForm2: FormGroup;
+  incerteza: boolean = false;
   
   constructor(
     public authService: AuthService,
@@ -20,6 +22,10 @@ export class EvaluationFR2Page {
   ) {
     this.evaluationForm = this.formBuilder.group({
         riskFactor: ['', [Validators.required]]
+      });
+
+    this.evaluationForm2 = this.formBuilder.group({
+        why: ['', [Validators.required]]
       });
   }
   
@@ -37,6 +43,21 @@ export class EvaluationFR2Page {
     let fr02 = evaluationForm.riskFactor;
 
     ///TODO: Salvar a resposta no BD
-    this.navCtrl.push(EvaluationFR3Page);
+
+    if (fr02 == 'incerteza'){
+      this.incerteza = true;  
+    }
+    else {
+      this.navCtrl.push(EvaluationFR3Page);
+    }
+  }
+
+  onSubmit2(): void {
+    ///TODO: Salvar a resposta da resposta no BD
+    this.navCtrl.push(EvaluationFR3Page);    
+  }
+
+  voltar(): void {
+    this.incerteza = false;
   }
 }

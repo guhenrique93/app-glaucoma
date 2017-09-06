@@ -13,7 +13,7 @@
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <h4>Uveíte em OD</h4>  
-    <ion-list radio-group formControlName="riskFactorOD">
+    <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
         <ion-label>Turvação visual por menos de 15 dias</ion-label>
@@ -38,7 +38,7 @@
     </ion-list>
 
     <h4>Uveíte em OE</h4>  
-    <ion-list radio-group formControlName="riskFactorOE">
+    <ion-list radio-group formControlName="riskFactorOE" text-wrap>
       
       <ion-item>
         <ion-label>Turvação visual por menos de 15 dias</ion-label>

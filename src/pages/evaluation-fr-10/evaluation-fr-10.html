@@ -1,0 +1,66 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a melhor opção caso tenha informação sobre os valores médios de sua <strong>pressão arterial</strong> (em mmHg)
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <h4>Diastólica (PAD)</h4>  
+    <ion-list radio-group formControlName="riskFactorA" text-wrap>
+      
+      <ion-item>
+        <ion-label>Abaixo ou igual a 60</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Abaixo de 70 e acima de 60</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Acima de 70</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <h4>Sistólica (PAS)</h4>  
+    <ion-list radio-group formControlName="riskFactorB" text-wrap>
+      
+        <ion-item>
+        <ion-label>Abaixo ou igual a 60</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Abaixo de 70 e acima de 60</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Acima de 70</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> (a) Aparelhos automatizados, de baixo custo e confiáveis estão disponíveis no mercado, inclusive certificados pelo INMETRO;
+(b) caso não tenha estas medidas, deixar em branco – mas lembramos que tais medidas são úteis e ajudam na acurácia do risco
+obtido; (b) a média é obtida dividindo-se a soma do total de medições (por exemplo, 70+80+70+70 = 290) pela quantidade de vezes
+(quatro, no exemplo anterior: assim, dividimos 290 por 4 e obtemos 72,5). Isto deve ser feito tanto para a PAD (Pressão Arterial
+Diastólica) quanto para a PAS (Pressão Arterial Sistólica).
+</p>
+
+</ion-content>

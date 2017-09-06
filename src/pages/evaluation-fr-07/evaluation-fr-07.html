@@ -13,7 +13,7 @@
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <h4>Em <strong>apenas um</strong> familiar</h4>  
-    <ion-list radio-group formControlName="riskFactorA">
+    <ion-list radio-group formControlName="riskFactorA" text-wrap>
       
       <ion-item>
         <ion-label>Pai ou mãe com glaucoma</ion-label>
@@ -33,7 +33,7 @@
     </ion-list>
 
     <h4>Em <strong>mais de um</strong> familiar</h4>  
-    <ion-list radio-group formControlName="riskFactorB">
+    <ion-list radio-group formControlName="riskFactorB" text-wrap>
       
        <ion-item>
         <ion-label>Pai (P) e Mãe (M) com glaucoma</ion-label>

@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+<h3>
+  Assinale a melhor opção para sua adoção ou não do vício do <strong>tabagismo</strong> (fumar). Deixar em branco caso não seja fumante.
+</h3>
+
+<form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <h4>São <strong>quantas unidades</strong> diárias?</h4>  
+    <ion-list radio-group formControlName="riskFactorA" text-wrap>
+      
+      <ion-item>
+        <ion-label>De 01 a 20</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Acima de 20</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <h4>Há <strong>quanto tempo</strong> mantém o vício?</h4>  
+    <ion-list radio-group formControlName="riskFactorB" text-wrap>
+      
+        <ion-item>
+        <ion-label>Há mais de 10 e menos de 30 anos</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Há mais de 30 anos</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+  </form>
+
+  <p>
+    <strong>Atenção:</strong> (a) para narguilê, charuto e cachimbo, multiplique por 21 o quantitativo diário e então escolha a melhor opção; tudo o que
+queima e cuja fumaça entra em contato com a mucosa da boca é considerado neste item, no mínimo páreo ao cigarro convencional.
+</p>
+
+</ion-content>

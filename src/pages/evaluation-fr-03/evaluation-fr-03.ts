@@ -12,6 +12,7 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 export class EvaluationFR3Page {
 
   evaluationForm: FormGroup;
+  answered: boolean = false;
   
   constructor(
     public authService: AuthService,
@@ -20,8 +21,9 @@ export class EvaluationFR3Page {
     public navCtrl: NavController
   ) {
     this.evaluationForm = this.formBuilder.group({
-        riskFactorOD: ['', [Validators.required]],
-        riskFactorOE: ['', [Validators.required]]
+        riskFactorOD: ['', [Validators.minLength(0)]],
+        riskFactorOE: ['', [Validators.minLength(0)]],
+        why: ['', [Validators.required]]
       });
   }
 
@@ -38,8 +40,14 @@ export class EvaluationFR3Page {
     
     let fr03OD = evaluationForm.riskFactorOD;
     let fr03OE = evaluationForm.riskFactorOE;
+    let why = evaluationForm.why;
 
     ///TODO: Salvar a resposta no BD
     this.navCtrl.push(EvaluationFR4Page);
+  }
+
+  touched(){
+    this.answered = true;
+    this.evaluationForm.value.why = "compreensao";
   }
 }
