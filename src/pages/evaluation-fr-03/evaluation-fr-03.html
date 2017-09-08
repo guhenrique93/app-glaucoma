@@ -12,27 +12,28 @@
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+  
     <h4>Trauma em OD</h4>  
     <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
         <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="10"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="30"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio (ionSelect)="touched()" value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -42,27 +43,28 @@
       
       <ion-item>
         <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="10"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
-        <ion-radio (ionSelect)="touched()" value="30"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio (ionSelect)="touched()" value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
 
-<div *ngIf="!answered">
+<div *ngIf="!answeredOD && !answeredOE">
+
   <h3>Caso não responda a questão de N.º 03, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
   <ion-list radio-group formControlName="why" text-wrap>
     
@@ -81,6 +83,7 @@
 </div>
 
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>

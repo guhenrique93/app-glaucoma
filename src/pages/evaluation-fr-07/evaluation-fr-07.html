@@ -12,47 +12,76 @@
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
-    <h4>Em <strong>apenas um</strong> familiar</h4>  
-    <ion-list radio-group formControlName="riskFactorA" text-wrap>
+
+    <div *ngIf="!answeredRB">
+
+      <h4>Em <strong>apenas um</strong> familiar</h4>  
+      <ion-list radio-group formControlName="riskFactorA" text-wrap>
+        
+        <ion-item>
+          <ion-label>Pai ou mãe com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRA()" value="1"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Irmão ou irmã com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Irmão ou irmã com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRA()" value="3"></ion-radio>
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <div *ngIf="!answeredRA">
       
-      <ion-item>
-        <ion-label>Pai ou mãe com glaucoma</ion-label>
-        <ion-radio value="1"></ion-radio>
-      </ion-item>
+      <h4>Em <strong>mais de um</strong> familiar</h4>  
+      <ion-list radio-group formControlName="riskFactorB" text-wrap>
+        
+        <ion-item>
+          <ion-label>Pai (P) e Mãe (M) com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRB()" value="4"></ion-radio>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Irmão ou irmã com glaucoma</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
+        <ion-item>
+          <ion-label>Mais de 01 irmão ou filho com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRB()" value="5"></ion-radio>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Irmão ou irmã com glaucoma</ion-label>
-        <ion-radio value="3"></ion-radio>
-      </ion-item>
+        <ion-item>
+          <ion-label>Mais de 01 irmão ou filho, e P ou M com glaucoma</ion-label>
+          <ion-radio (ionSelect)="answerRB()" value="6"></ion-radio>
+        </ion-item>
 
-    </ion-list>
+      </ion-list>
 
-    <h4>Em <strong>mais de um</strong> familiar</h4>  
-    <ion-list radio-group formControlName="riskFactorB" text-wrap>
+    </div>
+
+    <div *ngIf="!answeredRA && !answeredRB">
+        
+        <h3>Caso não responda a questão de N.º 07, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+        <ion-list radio-group formControlName="why" text-wrap>
+        
+          <ion-item>
+            <ion-label>Não sei ou não tenho informações</ion-label>
+            <ion-radio value="informacao"></ion-radio>
+          </ion-item>
       
-       <ion-item>
-        <ion-label>Pai (P) e Mãe (M) com glaucoma</ion-label>
-        <ion-radio value="4"></ion-radio>
-      </ion-item>
+          <ion-item>
+              <ion-label>Meus familiares neste grau de parentesco não tem glaucoma não traumático</ion-label>
+              <ion-radio value="naoTem"></ion-radio>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Mais de 01 irmão ou filho com glaucoma</ion-label>
-        <ion-radio value="5"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Mais de 01 irmão ou filho, e P ou M com glaucoma</ion-label>
-        <ion-radio value="6"></ion-radio>
-      </ion-item>
-
-    </ion-list>
+        </ion-list>
+      
+      </div>
 
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>

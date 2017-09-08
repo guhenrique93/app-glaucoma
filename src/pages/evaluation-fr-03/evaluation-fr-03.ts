@@ -1,6 +1,6 @@
 import { EvaluationFR4Page } from './../evaluation-fr-04/evaluation-fr-04';
 import { AuthService } from './../../providers/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms/';
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 
@@ -12,7 +12,8 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 export class EvaluationFR3Page {
 
   evaluationForm: FormGroup;
-  answered: boolean = false;
+  answeredOD: boolean = false;
+  answeredOE: boolean = false;
   
   constructor(
     public authService: AuthService,
@@ -20,11 +21,25 @@ export class EvaluationFR3Page {
     public menuCtrl: MenuController,
     public navCtrl: NavController
   ) {
-    this.evaluationForm = this.formBuilder.group({
-        riskFactorOD: ['', [Validators.minLength(0)]],
-        riskFactorOE: ['', [Validators.minLength(0)]],
-        why: ['', [Validators.required]]
-      });
+      this.evaluationForm = this.formBuilder.group({
+          why: '',      
+          riskFactorOD: '',
+          riskFactorOE: ''
+        }, {validator: this.checkFields()});
+  }
+
+  checkFields(){
+    return (group: FormGroup): {[key: string]: any} => {
+        if (group.controls['riskFactorOD'].value && group.controls['riskFactorOE'].value) {
+          return null;
+        }
+        else if (group.controls['why'].value) {
+          return null;        
+        }
+        else {
+          return {"nada preenchido": false};
+        }
+    }
   }
 
   ionViewDidLoad() {
@@ -43,11 +58,15 @@ export class EvaluationFR3Page {
     let why = evaluationForm.why;
 
     ///TODO: Salvar a resposta no BD
+    ///Validações na hora de salvar pra salvar somente o necessário
     this.navCtrl.push(EvaluationFR4Page);
   }
 
-  touched(){
-    this.answered = true;
-    this.evaluationForm.value.why = "compreensao";
+  answerOD(){
+    this.answeredOD = true;
+  }
+
+  answerOE(){
+    this.answeredOE = true;
   }
 }

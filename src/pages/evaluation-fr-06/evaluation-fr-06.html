@@ -12,17 +12,18 @@
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+
     <h4>Em OD</h4>  
     <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
         <ion-label>Alta miopia presente</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()"  value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Não possui alta miopia</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerOD()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -32,17 +33,37 @@
       
        <ion-item>
         <ion-label>Alta miopia presente</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Não possui alta miopia</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerOE()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
 
+    <div *ngIf="!answeredOD && !answeredOE">
+        
+        <h3>Caso não responda a questão de N.º 06, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+        <ion-list radio-group formControlName="why" text-wrap>
+          
+          <ion-item>
+            <ion-label>Não compreendi a questão</ion-label>
+            <ion-radio value="compreensao"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Não tenho informações sobre isto</ion-label>
+            <ion-radio value="informacao"></ion-radio>
+          </ion-item>
+      
+        </ion-list>
+      
+      </div>
+
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>
