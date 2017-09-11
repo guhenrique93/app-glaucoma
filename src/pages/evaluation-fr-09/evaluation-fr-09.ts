@@ -10,18 +10,35 @@ import { EvaluationFR10Page } from "../evaluation-fr-10/evaluation-fr-10";
 })
 export class EvaluationFR9Page {
  
- evaluationForm: FormGroup;
-  
+  evaluationForm: FormGroup;
+  answeredOD: boolean = false;
+  answeredOE: boolean = false;
+
   constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
     public navCtrl: NavController
   ) {
-    this.evaluationForm = this.formBuilder.group({
-        riskFactorA: ['', [Validators.minLength(0)]],
-        riskFactorB: ['', [Validators.minLength(0)]]
-      });
+      this.evaluationForm = this.formBuilder.group({
+              why: '',      
+              riskFactorOD: '',
+              riskFactorOE: ''
+            }, {validator: this.checkFields()});
+    }
+
+  checkFields(){
+    return (group: FormGroup): {[key: string]: any} => {
+        if (group.controls['riskFactorOD'].value && group.controls['riskFactorOE'].value) {
+          return null;
+        }
+        else if (group.controls['why'].value) {
+          return null;        
+        }
+        else {
+          return {"nada preenchido": false};
+        }
+    }
   }
 
   ionViewDidLoad() {
@@ -35,11 +52,19 @@ export class EvaluationFR9Page {
   onSubmit(): void {
     let evaluationForm = this.evaluationForm.value;
     
-    let fr03A = evaluationForm.riskFactorA;
-    let fr03B = evaluationForm.riskFactorB;
+    let fr03A = evaluationForm.riskFactorOD;
+    let fr03B = evaluationForm.riskFactorOE;
 
     ///TODO: Salvar a resposta no BD
     this.navCtrl.push(EvaluationFR10Page);
+  }
+
+  answerOD(){
+    this.answeredOD = true;
+  }
+
+  answerOE(){
+    this.answeredOE = true;
   }
 }
 

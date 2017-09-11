@@ -8,22 +8,42 @@
 <ion-content padding>
 
 <h3>
-  Assinale a opção caso tenha informação sobre os <strong>valores de sua pressão intra-ocultar</strong> (PIO), disponível em seu prontuário
+  FR09) Assinale a opção caso tenha informação sobre os <strong>valores de sua pressão intra-ocultar</strong> (PIO), disponível em seu prontuário
 médico. Selecione as três últimas medidas obtidas em cada olho, calcule a média das medidas, e informe a média por olho.
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
   <h4>Média das últimas medidas da PIO em OD</h4>  
   <ion-item>  
-    <ion-input type="number" placeholder="0" formControlName="riskFactorA"></ion-input>
+    <ion-input type="number" placeholder="0" formControlName="riskFactorOD"></ion-input>
   </ion-item>  
 
   <h4>Média das últimas medidas da PIO em OE</h4>  
   <ion-item>  
-    <ion-input type="number" placeholder="0" formControlName="riskFactorB"></ion-input>
+    <ion-input type="number" placeholder="0" formControlName="riskFactorOE"></ion-input>
   </ion-item>  
 
+  <div *ngIf="!riskFactorOD && !riskFactorOE">
+      <br />
+      <h3>Caso não responda a questão de N.º 09, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+      <ion-list radio-group formControlName="why" text-wrap>
+        
+        <ion-item>
+          <ion-label>Não compreendi a questão</ion-label>
+          <ion-radio value="compreensao"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Não tenho e não consigo informações sobre isto</ion-label>
+          <ion-radio value="informacao"></ion-radio>
+        </ion-item>
+    
+      </ion-list>
+    
+    </div>
+
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>

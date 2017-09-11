@@ -8,31 +8,27 @@
 <ion-content padding>
 
 <h3>
-  Assinale a melhor opção quanto ao diagnóstico de <strong>diabete mellitus</strong> (DM) e suas complicações, especificadas.
+  FR08) Assinale a melhor opção quanto ao diagnóstico de <strong>Diabete Mellitus</strong> (DM) e suas complicações, especificadas.
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+
     <h4>Duração do DM e Hemoglobina Glicada (HG)</h4>  
     <ion-list radio-group formControlName="riskFactorA" text-wrap>
       
       <ion-item>
         <ion-label>DM Insulino Dependente há mais de 15 anos</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>DM Insulino Dependente há mais de 15 anos</ion-label>
-        <ion-radio value="2"></ion-radio>
+        <ion-label>Hemoglobina Glicada acima de 8% no último ano</ion-label>
+        <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>DM há mais de 30 anos ou HG acima de 9%</ion-label>
-        <ion-radio value="3"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Não possui DM</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-label>DM há mais de 30 anos ou HG acima de 12%</ion-label>
+        <ion-radio (ionSelect)="answerRA()" value="3"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -42,26 +38,51 @@
       
        <ion-item>
         <ion-label>C (complicação) vascular periférica</ion-label>
-        <ion-radio value="4"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="4"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>C renal <strong>ou</strong> C coronária <strong>ou</strong> C retiniana</ion-label>
-        <ion-radio value="5"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="5"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Presentes todas as complicações acima citadas</ion-label>
-        <ion-radio value="6"></ion-radio>
+          <ion-label>C renal <strong>e</strong> C retiniana <strong>ou</strong> C coronária <strong>e</strong> C retiniana</ion-label>
+        <ion-radio (ionSelect)="answerRB()" value="6"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nenhuma</ion-label>
-        <ion-radio value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="0"></ion-radio>
       </ion-item>
     </ion-list>
 
+    <div *ngIf="!answeredRA && !answeredRB">
+      
+      <h3>Caso não responda a questão de N.º 09, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+      <ion-list radio-group formControlName="why" text-wrap>
+        
+        <ion-item>
+          <ion-label>Não compreendi a questão</ion-label>
+          <ion-radio value="compreensao"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Não tenho informações sobre isto</ion-label>
+          <ion-radio value="informacao"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Jamais sofri Diabete Mellitus</ion-label>
+            <ion-radio value="nunca"></ion-radio>
+        </ion-item>
+    
+      </ion-list>
+    
+    </div>
+
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>
