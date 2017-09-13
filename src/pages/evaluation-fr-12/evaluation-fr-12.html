@@ -8,7 +8,7 @@
 <ion-content padding>
 
 <h3>
-  Assinale a melhor opção para sua condição em relação ao <strong>sedentarismo</strong>. As questões se referem à atividade física (AF).
+  FR12) Assinale a melhor opção para sua condição em relação ao <strong>sedentarismo</strong>. As questões se referem à atividade física (AF).
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
@@ -18,17 +18,17 @@
       
         <ion-item>
         <ion-label>Nenhuma prática regular de atividade física</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>De 01 a 03 vezes na semana</ion-label>
-        <ion-radio value="2"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>De 04 a mais vezes na semana</ion-label>
-        <ion-radio value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="3"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -38,22 +38,42 @@
       
       <ion-item>
         <ion-label>Máxima de 15 minutos no dia da atividade</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Entre 15 e 30 minutos no dia da atividade</ion-label>
-        <ion-radio value="2"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="2"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Acima de 30 minutos no dia da atividade</ion-label>
-        <ion-radio value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="3"></ion-radio>
       </ion-item>
 
     </ion-list>
 
+    <div *ngIf="!answeredRA && !answeredRB">
+        
+        <h3>Caso não responda a questão de N.º 12, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+        <ion-list radio-group formControlName="why" text-wrap>
+          
+          <ion-item>
+            <ion-label>Não compreendi a questão</ion-label>
+            <ion-radio value="compreensao"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Sofro de condição física ou cerebral que me impede de me movimentar</ion-label>
+            <ion-radio value="condicao"></ion-radio>
+          </ion-item>
+      
+        </ion-list>
+      
+      </div>
+
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>

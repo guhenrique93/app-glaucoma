@@ -8,21 +8,22 @@
 <ion-content padding>
 
 <h3>
-  Assinale a melhor opção para sua adoção ou não do vício do <strong>tabagismo</strong> (fumar). Deixar em branco caso não seja fumante.
+    FR11) Assinale a melhor opção para sua adoção ou não do vício do <strong>tabagismo</strong> (fumar). Deixar em branco caso não seja fumante.
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+
     <h4>São <strong>quantas unidades</strong> diárias?</h4>  
     <ion-list radio-group formControlName="riskFactorA" text-wrap>
       
       <ion-item>
         <ion-label>De 01 a 20</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Acima de 20</ion-label>
-        <ion-radio value="2"></ion-radio>
+        <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -30,19 +31,44 @@
     <h4>Há <strong>quanto tempo</strong> mantém o vício?</h4>  
     <ion-list radio-group formControlName="riskFactorB" text-wrap>
       
-        <ion-item>
+      <ion-item>
+          <ion-label>Há menos de 10 anos</ion-label>
+          <ion-radio (ionSelect)="answerRB()" value="10"></ion-radio>
+      </ion-item>
+
+      <ion-item>
         <ion-label>Há mais de 10 e menos de 30 anos</ion-label>
-        <ion-radio value="1"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Há mais de 30 anos</ion-label>
-        <ion-radio value="2"></ion-radio>
+        <ion-radio (ionSelect)="answerRB()" value="2"></ion-radio>
       </ion-item>
 
     </ion-list>
 
+    <div *ngIf="!answeredRA && !answeredRB">
+        
+        <h3>Caso não responda a questão de N.º 11, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+        <ion-list radio-group formControlName="why" text-wrap>
+          
+          <ion-item>
+            <ion-label>Não compreendi a questão</ion-label>
+            <ion-radio value="compreensao"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Jamais utilizei algum destes produtos</ion-label>
+            <ion-radio value="nunca"></ion-radio>
+          </ion-item>
+      
+        </ion-list>
+      
+      </div>
+
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
   </form>
 
   <p>

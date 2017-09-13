@@ -11,6 +11,8 @@ import { EvaluationFR12Page } from "../evaluation-fr-12/evaluation-fr-12";
 export class EvaluationFR11Page {
 
    evaluationForm: FormGroup;
+   answeredRA: boolean = false;
+   answeredRB: boolean = false;
 
    constructor(
     public authService: AuthService,
@@ -18,10 +20,25 @@ export class EvaluationFR11Page {
     public menuCtrl: MenuController,
     public navCtrl: NavController
   ) {
-    this.evaluationForm = this.formBuilder.group({
-        riskFactorA: ['', [Validators.minLength(0)]],
-        riskFactorB: ['', [Validators.minLength(0)]]
-      });
+      this.evaluationForm = this.formBuilder.group({
+        why: '',      
+        riskFactorA: '',
+        riskFactorB: ''
+      }, {validator: this.checkFields()});
+  }
+
+  checkFields(){
+    return (group: FormGroup): {[key: string]: any} => {
+      if (group.controls['riskFactorA'].value && group.controls['riskFactorB'].value) {
+        return null;
+      }
+      else if (group.controls['why'].value) {
+        return null;        
+      }
+      else {
+        return {"nada preenchido": false};
+      }
+    }
   }
 
   ionViewDidLoad() {
@@ -40,6 +57,14 @@ export class EvaluationFR11Page {
 
     ///TODO: Salvar a resposta no BD
     this.navCtrl.push(EvaluationFR12Page);
+  }
+
+  answerRA(){
+    this.answeredRA = true;
+  }
+
+  answerRB(){
+    this.answeredRB = true;
   }
 }
 

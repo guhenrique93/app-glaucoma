@@ -10,17 +10,37 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 export class EvaluationFR12Page {
 
     evaluationForm: FormGroup;
-
+    answeredRA: boolean = false;
+    answeredRB: boolean = false;
+    
    constructor(
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
     public navCtrl: NavController
   ) {
-    this.evaluationForm = this.formBuilder.group({
-        riskFactorA: ['', [Validators.required]],
-        riskFactorB: ['', [Validators.minLength(0)]]
-      });
+        this.evaluationForm = this.formBuilder.group({
+          why: '',      
+          riskFactorA: '',
+          riskFactorB: ''
+        }, {validator: this.checkFields()});
+    }
+
+  checkFields(){
+    return (group: FormGroup): {[key: string]: any} => {
+      if (group.controls['riskFactorA'].value == '1') {
+        return null;
+      }
+      else if (group.controls['riskFactorA'].value && group.controls['riskFactorB'].value) {
+        return null;        
+      }
+      else if (group.controls['why'].value) {
+        return null;        
+      }
+      else {
+        return {"nada preenchido": false};
+      }
+    }
   }
 
   ionViewDidLoad() {
@@ -40,6 +60,14 @@ export class EvaluationFR12Page {
     ///TODO: Salvar a resposta no BD
     alert("questionário respondido com sucesso! ");
     //this.navCtrl.push(EvaluationFR9Page);
+  }
+
+  answerRA(){
+    this.answeredRA = true;
+  }
+
+  answerRB(){
+    this.answeredRB = true;
   }
 }
 
