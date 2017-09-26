@@ -1,8 +1,11 @@
+import { EvaluationFRWhyPage } from './../evaluation-fr-why/evaluation-fr-why';
+import { ModalIntroFr2Page } from './../modal-intro-fr-02/modal-intro-fr-02';
+import { ModalIntroPage } from './../modal-intro/modal-intro';
 import { EvaluationFR3Page } from './../evaluation-fr-03/evaluation-fr-03';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms/';
 import { AuthService } from './../../providers/auth.service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-evaluation-fr-02',
@@ -18,6 +21,7 @@ export class EvaluationFR2Page {
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
+    public modalCtrl: ModalController,    
     public navCtrl: NavController
   ) {
     this.evaluationForm = this.formBuilder.group({
@@ -30,7 +34,11 @@ export class EvaluationFR2Page {
   }
   
   ionViewDidLoad() {
-    this.menuCtrl.enable(true, 'user-menu');    
+    this.menuCtrl.enable(true, 'user-menu');   
+    
+    let introModal = this.modalCtrl.create(ModalIntroFr2Page);
+    
+    introModal.present();
   }
 
   ionViewCanEnter(): Promise<boolean> {    
@@ -54,7 +62,8 @@ export class EvaluationFR2Page {
 
   onSubmit2(): void {
     ///TODO: Salvar a resposta da resposta no BD
-    this.navCtrl.push(EvaluationFR3Page);    
+    
+    this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR3Page, FR: 2});
   }
 
   voltar(): void {

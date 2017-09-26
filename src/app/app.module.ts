@@ -1,3 +1,9 @@
+import { ModalIntroFr5Page } from './../pages/modal-intro-fr-05/modal-intro-fr-05';
+import { ModalIntroFr4Page } from './../pages/modal-intro-fr-04/modal-intro-fr-04';
+import { EvaluationFRWhyPage } from './../pages/evaluation-fr-why/evaluation-fr-why';
+import { ModalIntroFr3Page } from './../pages/modal-intro-fr-03/modal-intro-fr-03';
+import { ModalIntroFr2Page } from './../pages/modal-intro-fr-02/modal-intro-fr-02';
+import { ModalIntroPage } from './../pages/modal-intro/modal-intro';
 import { EvaluationFR12Page } from './../pages/evaluation-fr-12/evaluation-fr-12';
 import { EvaluationFR11Page } from './../pages/evaluation-fr-11/evaluation-fr-11';
 import { EvaluationFR10Page } from './../pages/evaluation-fr-10/evaluation-fr-10';
@@ -68,9 +74,15 @@ const firebaseAuthConfig = {
     EvaluationFR10Page,
     EvaluationFR11Page,
     EvaluationFR12Page,
+    EvaluationFRWhyPage,
     MyApp,
     HomePage,
     ModalAgreementPage,
+    ModalIntroPage,
+    ModalIntroFr2Page,
+    ModalIntroFr3Page,
+    ModalIntroFr4Page,
+    ModalIntroFr5Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,
@@ -106,9 +118,15 @@ const firebaseAuthConfig = {
     EvaluationFR10Page,
     EvaluationFR11Page,
     EvaluationFR12Page,
+    EvaluationFRWhyPage,
     MyApp,
     HomePage,
     ModalAgreementPage,
+    ModalIntroPage,
+    ModalIntroFr2Page,
+    ModalIntroFr3Page,
+    ModalIntroFr4Page,
+    ModalIntroFr5Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,

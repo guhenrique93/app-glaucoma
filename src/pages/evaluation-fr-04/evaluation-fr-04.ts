@@ -1,9 +1,11 @@
+import { ModalIntroFr4Page } from './../modal-intro-fr-04/modal-intro-fr-04';
 import { EvaluationFR5Page } from './../evaluation-fr-05/evaluation-fr-05';
 import { EvaluationPage } from './../evaluation/evaluation';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
+import { EvaluationFRWhyPage } from '../evaluation-fr-why/evaluation-fr-why';
 
 @Component({
   selector: 'page-evaluation-fr-04',
@@ -19,6 +21,7 @@ export class EvaluationFR4Page {
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
+    public modalCtrl: ModalController, 
     public navCtrl: NavController
   ) {
       this.evaluationForm = this.formBuilder.group({
@@ -44,6 +47,10 @@ export class EvaluationFR4Page {
   
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'user-menu');    
+
+    let introModal = this.modalCtrl.create(ModalIntroFr4Page);
+    
+    introModal.present();
   }
 
   ionViewCanEnter(): Promise<boolean> {    
@@ -55,9 +62,15 @@ export class EvaluationFR4Page {
     
     let fr03OD = evaluationForm.riskFactorOD;
     let fr03OE = evaluationForm.riskFactorOE;
+    let why = evaluationForm.why;
 
     ///TODO: Salvar a resposta no BD
-    this.navCtrl.push(EvaluationFR5Page);
+    
+    if (!why) {
+      this.navCtrl.push(EvaluationFR5Page);
+    } else {
+      this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR5Page, FR: 4});      
+    }
   }
 
   answerOD(){

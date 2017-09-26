@@ -5,8 +5,9 @@
   </ion-navbar>
 
 </ion-header>
-<ion-content padding>
 
+<ion-content padding>
+  
 <h3>
   Assinale a melhor opção quanto a ter utilizado ou não <strong>colírio com corticóide</strong>, seja em olho direito (OD) ou esquerdo (OE)
 </h3>
@@ -17,7 +18,7 @@
     <ion-list radio-group formControlName="riskFactorOD" text-wrap>
       
       <ion-item>
-        <ion-label>Usou o colírio por até e mês</ion-label>
+        <ion-label>Usou o colírio por até 1 mês</ion-label>
         <ion-radio (ionSelect)="answerOD()" value="1"></ion-radio>
       </ion-item>
 
@@ -31,13 +32,18 @@
         <ion-radio (ionSelect)="answerOD()" value="+6"></ion-radio>
       </ion-item>
 
+      <ion-item>
+        <ion-label>Jamais utilizei este medicamento no olho direito</ion-label>
+        <ion-radio (ionSelect)="answerOD()" value="nuncaOD"></ion-radio>
+      </ion-item>
+
     </ion-list>
 
     <h4>Em OE</h4>  
     <ion-list radio-group formControlName="riskFactorOE" text-wrap>
       
        <ion-item>
-        <ion-label>Usou o colírio por até e mês</ion-label>
+        <ion-label>Usou o colírio por até 1 mês</ion-label>
         <ion-radio (ionSelect)="answerOE()" value="1"></ion-radio>
       </ion-item>
 
@@ -49,6 +55,11 @@
       <ion-item>
         <ion-label>Usou o colírio por mais de 6 meses</ion-label>
         <ion-radio (ionSelect)="answerOE()" value="+6"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Jamais utilizei este medicamento no olho esquerdo</ion-label>
+        <ion-radio (ionSelect)="answerOE()" value="nuncaOE"></ion-radio>
       </ion-item>
 
     </ion-list>
@@ -67,11 +78,6 @@
             <ion-label>Não tenho informações sobre isto</ion-label>
             <ion-radio value="informacao"></ion-radio>
           </ion-item>
-
-          <ion-item>
-              <ion-label>Jamais utilizei este medicamento</ion-label>
-              <ion-radio value="nunca"></ion-radio>
-          </ion-item>
       
         </ion-list>
       
@@ -81,12 +87,12 @@
 
   </form>
 
-  <p>
+  <!--<p>
     <strong>Atenção:</strong> (a) assinale a opção <strong>uso de colírio com corticóide em OD ou OE</strong> apenas no caso de uso diário, ao menos duas vezes ao
 dia, contínuo, no período de tempo especificado. Para saber se o colírio contém corticóide, procure na bula do mesmo esta informação,
 ou na internet. No Brasil, são comuns, dentre outros: DECADRON, FLORATE, FLUMEX, GENTACORT, MAXIDEX, MAXITROL, POLIPRED,
 PRED FORT. <strong>Atenção: </strong>(b)<strong> o uso oral de corticóide</strong>, como a PREDNISONA ou PREDNISOLONA, <strong>nos mesmos períodos</strong>, deverá gerar
 marcação em ambos os olhos.
-</p>
+</p>-->
 
 </ion-content>

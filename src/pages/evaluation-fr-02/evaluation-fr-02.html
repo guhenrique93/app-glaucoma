@@ -5,11 +5,12 @@
   </ion-navbar>
 
 </ion-header>
+
 <ion-content padding>
 
 <div *ngIf="!incerteza">
 <h3>
-  Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong> (isto é, “fenótipo que traduz caracteres raciais”)
+  Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong>
 </h3>
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
   <ion-list radio-group formControlName="riskFactor" text-wrap>

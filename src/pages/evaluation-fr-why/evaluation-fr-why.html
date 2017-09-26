@@ -1,0 +1,29 @@
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>Avaliação</ion-title>
+      </ion-navbar>
+    
+  </ion-header>
+  
+  <ion-content padding>
+    
+    <h3>
+      Por favor, poderia esclarecer sua dúvida ou nos detalhar o porquê da opção escolhida?
+    </h3>
+    
+    <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+      <ion-list radio-group text-wrap>
+        
+        <ion-item>  
+          <ion-textarea rows="4" placeholder="Digite aqui..." formControlName="why"></ion-textarea>
+        </ion-item>  
+    
+      </ion-list>
+    
+      <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Continuar</button>
+      <!--<button ion-button full (click)="voltar()">Voltar</button>-->
+    </form>
+    
+  </ion-content>
+    
