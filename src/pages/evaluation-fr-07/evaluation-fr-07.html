@@ -11,7 +11,7 @@
 <h3>
   Assinale a melhor opção quanto ao diagnóstico ou não de <strong>glaucoma não traumático em familiar de primeiro grau</strong>
 </h3>
-
+<br />
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
 
     <div *ngIf="!answeredRB">
@@ -84,11 +84,11 @@
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
 
   </form>
-
+<!--
   <p>
     <strong>Atenção:</strong> (a) não assinale a opção acima caso os glaucomas nos familiares acima sejam devido a um trauma ocular, sendo que as
 cirurgias que podem desencadeá-los também se enquadram nesta situação; (b) idem para os glaucomas que seguem às uveítes ou a
 complicações do diabetes na retina e após trombose de veia de retina. Em nenhuma destas há caráter genético!
-</p>
+</p>-->
 
 </ion-content>

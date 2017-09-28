@@ -1,3 +1,5 @@
+import { ModalIntroFr8Page } from './../pages/modal-intro-fr-08/modal-intro-fr-08';
+import { ModalIntroFr6Page } from './../pages/modal-intro-fr-06/modal-intro-fr-06';
 import { ModalIntroFr5Page } from './../pages/modal-intro-fr-05/modal-intro-fr-05';
 import { ModalIntroFr4Page } from './../pages/modal-intro-fr-04/modal-intro-fr-04';
 import { EvaluationFRWhyPage } from './../pages/evaluation-fr-why/evaluation-fr-why';
@@ -45,6 +47,8 @@ import { SignupBirthplacePage } from "../pages/signup-birthplace/signup-birthpla
 import { EvaluationFR4Page } from "../pages/evaluation-fr-04/evaluation-fr-04";
 import { EvaluationFR5Page } from "../pages/evaluation-fr-05/evaluation-fr-05";
 import { EvaluationFR9Page } from "../pages/evaluation-fr-09/evaluation-fr-09";
+import { ModalIntroFr7Page } from '../pages/modal-intro-fr-07/modal-intro-fr-07';
+import { ModalIntroFr9Page } from '../pages/modal-intro-fr-09/modal-intro-fr-09';
 
 const firebaseAppConfig = {
     apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
@@ -83,6 +87,10 @@ const firebaseAuthConfig = {
     ModalIntroFr3Page,
     ModalIntroFr4Page,
     ModalIntroFr5Page,
+    ModalIntroFr6Page,
+    ModalIntroFr7Page,
+    ModalIntroFr8Page,
+    ModalIntroFr9Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,
@@ -127,6 +135,10 @@ const firebaseAuthConfig = {
     ModalIntroFr3Page,
     ModalIntroFr4Page,
     ModalIntroFr5Page,
+    ModalIntroFr6Page,
+    ModalIntroFr7Page,
+    ModalIntroFr8Page,
+    ModalIntroFr9Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,

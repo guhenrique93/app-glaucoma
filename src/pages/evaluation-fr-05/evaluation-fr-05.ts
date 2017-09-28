@@ -4,6 +4,7 @@ import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
+import { EvaluationFRWhyPage } from '../evaluation-fr-why/evaluation-fr-why';
 
 @Component({
   selector: 'page-evaluation-fr-05',
@@ -67,7 +68,7 @@ export class EvaluationFR5Page {
     if (!why) {
       this.navCtrl.push(EvaluationFR6Page);
     } else {
-      this.navCtrl.push(EvaluationFR5Page, { destinationPage: EvaluationFR6Page, FR: 5 });      
+      this.navCtrl.push(EvaluationFRWhyPage, { destinationPage: EvaluationFR6Page, FR: 5 });      
     }
   }
 
