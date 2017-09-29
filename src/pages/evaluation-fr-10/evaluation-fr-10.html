@@ -18,12 +18,12 @@
     <ion-list radio-group formControlName="riskFactorA" text-wrap>
       
       <ion-item>
-        <ion-label>Abaixo ou igual a 60</ion-label>
+        <ion-label>Igual ou abaixo de 50</ion-label>
         <ion-radio (ionSelect)="answerRA()" value="1"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>Abaixo de 70 e acima de 60</ion-label>
+        <ion-label>Entre 50 e 60</ion-label>
         <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
       </ion-item>
 
@@ -56,7 +56,7 @@
 
     <div *ngIf="!answeredRA && !answeredRB">
         
-        <h3>Caso não responda a questão de N.º 10, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+        <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
         <ion-list radio-group formControlName="why" text-wrap>
           
           <ion-item>
@@ -76,13 +76,13 @@
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
 
   </form>
-
+<!--
   <p>
     <strong>Atenção:</strong> (a) Aparelhos automatizados, de baixo custo e confiáveis estão disponíveis no mercado, inclusive certificados pelo INMETRO;
 (b) caso não tenha estas medidas, deixar em branco – mas lembramos que tais medidas são úteis e ajudam na acurácia do risco
 obtido; (b) a média é obtida dividindo-se a soma do total de medições (por exemplo, 70+80+70+70 = 290) pela quantidade de vezes
 (quatro, no exemplo anterior: assim, dividimos 290 por 4 e obtemos 72,5). Isto deve ser feito tanto para a PAD (Pressão Arterial
 Diastólica) quanto para a PAS (Pressão Arterial Sistólica).
-</p>
+</p>-->
 
 </ion-content>

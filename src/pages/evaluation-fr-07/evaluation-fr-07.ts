@@ -65,7 +65,7 @@ export class EvaluationFR7Page {
 
     ///TODO: Salvar a resposta no BD
     
-    if (!why) {
+    if (!why || why == 'naoTem') {
       this.navCtrl.push(EvaluationFR8Page);
     } else {
       this.navCtrl.push(EvaluationFRWhyPage, { destinationPage: EvaluationFR8Page, FR: 7 });      

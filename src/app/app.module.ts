@@ -1,3 +1,7 @@
+import { AnswerConfirmationPage } from './../pages/answer-confirmation/answer-confirmation';
+import { ModalIntroFr12Page } from './../pages/modal-intro-fr-12/modal-intro-fr-12';
+import { ModalIntroFr11Page } from './../pages/modal-intro-fr-11/modal-intro-fr-11';
+import { ModalIntroFr10Page } from './../pages/modal-intro-fr-10/modal-intro-fr-10';
 import { ModalIntroFr8Page } from './../pages/modal-intro-fr-08/modal-intro-fr-08';
 import { ModalIntroFr6Page } from './../pages/modal-intro-fr-06/modal-intro-fr-06';
 import { ModalIntroFr5Page } from './../pages/modal-intro-fr-05/modal-intro-fr-05';
@@ -5,7 +9,6 @@ import { ModalIntroFr4Page } from './../pages/modal-intro-fr-04/modal-intro-fr-0
 import { EvaluationFRWhyPage } from './../pages/evaluation-fr-why/evaluation-fr-why';
 import { ModalIntroFr3Page } from './../pages/modal-intro-fr-03/modal-intro-fr-03';
 import { ModalIntroFr2Page } from './../pages/modal-intro-fr-02/modal-intro-fr-02';
-import { ModalIntroPage } from './../pages/modal-intro/modal-intro';
 import { EvaluationFR12Page } from './../pages/evaluation-fr-12/evaluation-fr-12';
 import { EvaluationFR11Page } from './../pages/evaluation-fr-11/evaluation-fr-11';
 import { EvaluationFR10Page } from './../pages/evaluation-fr-10/evaluation-fr-10';
@@ -65,6 +68,7 @@ const firebaseAuthConfig = {
 
 @NgModule({
   declarations: [
+    AnswerConfirmationPage,
     CustomLoggedHeaderComponent,
     EvaluationPage,
     EvaluationFR2Page,
@@ -82,7 +86,6 @@ const firebaseAuthConfig = {
     MyApp,
     HomePage,
     ModalAgreementPage,
-    ModalIntroPage,
     ModalIntroFr2Page,
     ModalIntroFr3Page,
     ModalIntroFr4Page,
@@ -91,6 +94,9 @@ const firebaseAuthConfig = {
     ModalIntroFr7Page,
     ModalIntroFr8Page,
     ModalIntroFr9Page,
+    ModalIntroFr10Page,
+    ModalIntroFr11Page,
+    ModalIntroFr12Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,
@@ -113,6 +119,7 @@ const firebaseAuthConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AnswerConfirmationPage,
     CustomLoggedHeaderComponent,
     EvaluationPage,    
     EvaluationFR2Page,
@@ -130,7 +137,6 @@ const firebaseAuthConfig = {
     MyApp,
     HomePage,
     ModalAgreementPage,
-    ModalIntroPage,
     ModalIntroFr2Page,
     ModalIntroFr3Page,
     ModalIntroFr4Page,
@@ -139,6 +145,9 @@ const firebaseAuthConfig = {
     ModalIntroFr7Page,
     ModalIntroFr8Page,
     ModalIntroFr9Page,
+    ModalIntroFr10Page,
+    ModalIntroFr11Page,
+    ModalIntroFr12Page,
     SigninPage,
     SignupPage,
     SignupAgreementPage,

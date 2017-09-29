@@ -65,7 +65,7 @@ export class EvaluationFR8Page {
 
     ///TODO: Salvar a resposta no BD
     
-    if (!why) {
+    if (!why || why == 'nunca') {
       this.navCtrl.push(EvaluationFR9Page);
     } else {
       this.navCtrl.push(EvaluationFRWhyPage, { destinationPage: EvaluationFR9Page, FR: 8 });      

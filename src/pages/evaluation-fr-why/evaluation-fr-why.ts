@@ -11,6 +11,7 @@ export class EvaluationFRWhyPage {
   evaluationForm: FormGroup;
   destinationPage;
   FR: number;
+  opened: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -32,6 +33,14 @@ export class EvaluationFRWhyPage {
   
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'user-menu');   
+  }
+
+  ionViewWillEnter() {
+    if (this.opened) {
+      this.navCtrl.pop();
+    }
+    
+    this.opened = true;
   }
 
   ionViewCanEnter(): Promise<boolean> {    

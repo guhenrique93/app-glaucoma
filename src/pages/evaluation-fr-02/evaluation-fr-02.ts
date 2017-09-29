@@ -1,6 +1,5 @@
 import { EvaluationFRWhyPage } from './../evaluation-fr-why/evaluation-fr-why';
 import { ModalIntroFr2Page } from './../modal-intro-fr-02/modal-intro-fr-02';
-import { ModalIntroPage } from './../modal-intro/modal-intro';
 import { EvaluationFR3Page } from './../evaluation-fr-03/evaluation-fr-03';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms/';
 import { AuthService } from './../../providers/auth.service';

@@ -26,7 +26,7 @@ médico. Selecione as três últimas medidas obtidas em cada olho, calcule a mé
 
   <div *ngIf="!riskFactorOD && !riskFactorOE">
       <br />
-      <h3>Caso não responda a questão de N.º 09, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+      <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
       <ion-list radio-group formControlName="why" text-wrap>
         
         <ion-item>
@@ -48,8 +48,9 @@ médico. Selecione as três últimas medidas obtidas em cada olho, calcule a mé
   </form>
 
   <p>
-    <strong>Atenção:</strong> (a) caso não tenha estas medidas, deixar em branco. Tais medidas ajudam na acurácia da medida de risco; (b) caso tenha
-menos de três medidas, informe a média ou o valor único. São números inteiros, em geral entre 10 e 40, para cada olho.
+    <strong>Atenção:</strong>
+    <br />(a) caso não tenha estas medidas, deixar em branco. Tais medidas ajudam na acurácia da medida de risco;
+    <br />(b) caso tenha menos de três medidas, informe a média ou o valor único. São números inteiros, em geral entre 10 e 40, para cada olho.
 </p>
 
 </ion-content>

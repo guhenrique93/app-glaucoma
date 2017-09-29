@@ -1,0 +1,28 @@
+<ion-content padding>
+  <ion-card>
+    <img src="assets/img/img-teste.png"/>
+  </ion-card>
+  <div *ngIf="!firstOK">
+    <p>
+      A questão a seguir solicita informações sobre sua pressão arterial, que é dividida entre sistólica (PAS) e diastólica (PAD).
+      <br />
+      <br />
+      Obter seus valores e calcular a média é mais simples do que parece.
+      <br />
+      <br />
+      Muitos pacientes hoje têm seu próprio aparelho, e seguem a técnica correta de verificação
+      <br />
+      <br />
+      Caso tenha permanecido em internação hospitalar com queda importante da pressão arterial, comum em estados de choque os mais diversos, usar os valores médios daquele período pode  ser muito útil.
+    </p>
+  </div>
+  <div *ngIf="firstOK">
+    <p>
+      <strong>Atenção:</strong>
+      <br />(a) Aparelhos automatizados, de baixo custo e confiáveis estão disponíveis no mercado, inclusive certificados pelo INMETRO;
+      <br />(b) caso não tenha estas medidas, deixar em branco – mas lembramos que tais medidas são úteis e ajudam na acurácia do risco obtido; 
+      <br />(c) a média é obtida dividindo-se a soma do total de medições (por exemplo, 70+80+70+70 = 290) pela quantidade de vezes  (quatro, no exemplo anterior: assim, dividimos 290 por 4 e obtemos 72,5). Isto deve ser feito tanto para a PAD (Pressão Arterial Diastólica) quanto para a PAS (Pressão Arterial Sistólica).
+  </p>
+  </div>
+  <button ion-button center block (click)="close()">OK</button>    
+</ion-content>

@@ -1,7 +1,10 @@
+import { ModalIntroFr12Page } from './../modal-intro-fr-12/modal-intro-fr-12';
+import { AnswerConfirmationPage } from './../answer-confirmation/answer-confirmation';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms/';
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
+import { EvaluationFRWhyPage } from '../evaluation-fr-why/evaluation-fr-why';
 
 @Component({
   selector: 'page-evaluation-fr-12',
@@ -17,6 +20,7 @@ export class EvaluationFR12Page {
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
+    public modalCtrl: ModalController,
     public navCtrl: NavController
   ) {
         this.evaluationForm = this.formBuilder.group({
@@ -44,7 +48,11 @@ export class EvaluationFR12Page {
   }
 
   ionViewDidLoad() {
-    this.menuCtrl.enable(true, 'user-menu');    
+    this.menuCtrl.enable(true, 'user-menu'); 
+    
+    let introModal = this.modalCtrl.create(ModalIntroFr12Page);
+    
+    introModal.present();
   }
 
   ionViewCanEnter(): Promise<boolean> {    
@@ -52,14 +60,19 @@ export class EvaluationFR12Page {
   }
 
   onSubmit(): void {
-    //let evaluationForm = this.evaluationForm.value;
+    let evaluationForm = this.evaluationForm.value;
     
-    //let fr03UmFamiliar = evaluationForm.riskFactorA;
-    //let fr03MaisDeUmFamiliar = evaluationForm.riskFactorB;
-
+    let riskFactorA = evaluationForm.riskFactorA;
+    let riskFactorB = evaluationForm.riskFactorB;
+    let why = evaluationForm.why;
+    
     ///TODO: Salvar a resposta no BD
-    alert("questionário respondido com sucesso! ");
-    //this.navCtrl.push(EvaluationFR9Page);
+    
+    if (!why || why == 'condicao') {
+      this.navCtrl.push(AnswerConfirmationPage);
+    } else {
+      this.navCtrl.push(EvaluationFRWhyPage, { destinationPage: AnswerConfirmationPage, FR: 12 });      
+    }
   }
 
   answerRA(){
