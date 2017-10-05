@@ -1,3 +1,4 @@
+import { EvaluationService } from './../providers/evaluation.service';
 import { AnswerConfirmationPage } from './../pages/answer-confirmation/answer-confirmation';
 import { ModalIntroFr12Page } from './../pages/modal-intro-fr-12/modal-intro-fr-12';
 import { ModalIntroFr11Page } from './../pages/modal-intro-fr-11/modal-intro-fr-11';
@@ -165,6 +166,7 @@ const firebaseAuthConfig = {
   ],
   providers: [
     AuthService,
+    EvaluationService,
     StatusBar,
     SplashScreen,
     UserService,

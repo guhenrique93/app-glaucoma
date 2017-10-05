@@ -1,10 +1,12 @@
+import { Evaluation } from './../../models/evaluation.model';
+import { EvaluationService } from './../../providers/evaluation.service';
 import { UserService } from './../../providers/user.service';
 import { EvaluationFR2Page } from './../evaluation-fr-02/evaluation-fr-02';
 import { AuthService } from './../../providers/auth.service';
 import { Component, Input } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { User } from "../../models/user.model";
-
+import firebase from "firebase";
 
 @Component({
   selector: 'page-evaluation',
@@ -16,6 +18,7 @@ export class EvaluationPage {
 
   constructor(
     public authService: AuthService,
+    public evaluationSevice: EvaluationService,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
     public userService: UserService
@@ -35,7 +38,18 @@ export class EvaluationPage {
       return this.authService.authenticated;      
   }
 
-  evaluation() {
-      this.navCtrl.push(EvaluationFR2Page);
+  startEvaluation() {
+      this.userService.currentUser
+        .first()
+        .subscribe((currentUser: User) => {
+          
+          let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
+
+          let evaluation = new Evaluation(timestamp, false);
+
+          this.evaluationSevice.create(evaluation, currentUser.uid);
+
+          this.navCtrl.push(EvaluationFR2Page);
+        })
   }
 }

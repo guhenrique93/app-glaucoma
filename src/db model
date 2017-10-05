@@ -1,0 +1,31 @@
+{
+    "users": {
+        "user": {
+            "uid": "asdfasd",
+            "nome": "teste",
+            "email": "teste@teste.com"
+        }
+    },
+
+    "evaluations": {
+        "evaluation-user-uid": {
+                "evaluation-uid": {
+                "id": 1,
+                "userId": 1,
+                "date": "28/12/1993", //(timestamp)
+                "finished": false
+            }
+        }
+    },
+
+    "answers": {
+        "answer-evaluation-uid": {
+            "answer-uid-01": {
+                "id": 1, //?
+                "FR": 1,
+                "notAnswered": true,
+                "why-message":"asdfasdf"
+            }
+        }   
+    }
+}

@@ -29,13 +29,13 @@ export class UserService extends BaseService{
       })
   }
 
-  create (user: User): firebase.Promise<void>{
+  create(user: User): firebase.Promise<void>{
     return this.af.database.object(`/users/${user.uid}`)
     .set(user)
     .catch(this.handlePromiseError);
   }
 
-  edit (user: {name: string, username: string }): firebase.Promise<void> {
+  edit(user: {name: string, username: string }): firebase.Promise<void> {
     return this.currentUser
       .update(user)
       .catch(this.handlePromiseError);
