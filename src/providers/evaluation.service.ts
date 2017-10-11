@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { FirebaseObjectObservable } from 'angularFire2';
 import { AngularFire } from 'angularFire2';
 import { Evaluation } from './../models/evaluation.model';
@@ -17,7 +18,8 @@ export class EvaluationService extends BaseService {
   }
 
   create(evaluation: Evaluation, userId: string): firebase.Promise<void> {
-    return  this.af.database.object(`/evaluations/${userId}/evaluation-${Date.now()}/`)
+    evaluation.uid = "evaluation-" + Date.now();
+    return  this.af.database.object(`/evaluations/${userId}/${evaluation.uid}/`)
       .set(evaluation)
       .catch(this.handlePromiseError);
   }
@@ -25,5 +27,31 @@ export class EvaluationService extends BaseService {
   getEvaluations(userId: string): FirebaseObjectObservable<Evaluation> {
     return <FirebaseObjectObservable<Evaluation>>this.af.database.object(`/evaluations/${userId}`)
       .catch(this.handlePromiseError);
+  }
+
+  getCurrentEvaluation(userId: string): any {
+    console.log("Teste");
+    return this.af.database.list(`/evaluations/${userId}`, { 
+      query: {
+        orderByChild: 'finished',
+        equalTo: false
+      }
+    }).catch(this.handleObservableError);
+    /*.map((evaluations: Evaluation[]) => {
+      console.log("map" + evaluations);
+      return evaluations[0];
+    })*/
+    
+  }
+
+  evaluationStartedNotFinished(userId: string): Observable<boolean> {
+    return this.af.database.list(`/evaluations/${userId}`, { 
+      query: {
+        orderByChild: 'finished',
+        equalTo: false
+      }
+    }).map((evaluations: Evaluation[]) => {
+      return evaluations.length > 0
+    }).catch(this.handleObservableError);
   }
 }

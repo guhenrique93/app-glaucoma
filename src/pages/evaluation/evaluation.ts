@@ -39,17 +39,28 @@ export class EvaluationPage {
   }
 
   startEvaluation() {
-      this.userService.currentUser
-        .first()
-        .subscribe((currentUser: User) => {
-          
-          let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
+        this.evaluationSevice.evaluationStartedNotFinished(this.user.uid)
+          .first()
+          .subscribe((evaluationNotFinished: boolean) => {
+              if (!evaluationNotFinished){
+                this.newEvaluation();
+              }
+              else
+              {
+                console.log("Existe uma avaliação já iniciada!");
+              }
+              
+              let evaluation = this.evaluationSevice.getCurrentEvaluation(this.user.uid);
 
-          let evaluation = new Evaluation(timestamp, false);
+              console.log(evaluation);
 
-          this.evaluationSevice.create(evaluation, currentUser.uid);
-
-          this.navCtrl.push(EvaluationFR2Page);
-        })
+              this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation});        
+          });
   }
+
+    private newEvaluation() {
+        let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
+        let evaluation = new Evaluation(timestamp, false);
+        this.evaluationSevice.create(evaluation, this.user.uid);
+    }
 }
