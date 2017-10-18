@@ -20,10 +20,10 @@
 
     "answers": {
         "answer-evaluation-uid": {
-            "answer-uid-01": {
+            "answer-FR-X": {
                 "id": 1, //?
                 "FR": 1,
-                "notAnswered": true,
+                "answered": true,
                 "why-message":"asdfasdf"
             }
         }   

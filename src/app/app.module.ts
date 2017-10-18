@@ -1,3 +1,4 @@
+import { ModalEvaluationNotFinishedPage } from './../pages/modal-evaluation-not-finished/modal-evaluation-not-finished';
 import { EvaluationService } from './../providers/evaluation.service';
 import { AnswerConfirmationPage } from './../pages/answer-confirmation/answer-confirmation';
 import { ModalIntroFr12Page } from './../pages/modal-intro-fr-12/modal-intro-fr-12';
@@ -46,7 +47,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-import { AngularFireModule, FirebaseAppConfig, FirebaseAuthConfig, AuthProviders, AuthMethods } from 'angularFire2';
+import { AngularFireModule, FirebaseAppConfig, FirebaseAuthConfig, AuthProviders, AuthMethods, AngularFireDatabase } from 'angularFire2';
 import { SignupBirthplacePage } from "../pages/signup-birthplace/signup-birthplace";
 import { EvaluationFR4Page } from "../pages/evaluation-fr-04/evaluation-fr-04";
 import { EvaluationFR5Page } from "../pages/evaluation-fr-05/evaluation-fr-05";
@@ -54,7 +55,7 @@ import { EvaluationFR9Page } from "../pages/evaluation-fr-09/evaluation-fr-09";
 import { ModalIntroFr7Page } from '../pages/modal-intro-fr-07/modal-intro-fr-07';
 import { ModalIntroFr9Page } from '../pages/modal-intro-fr-09/modal-intro-fr-09';
 
-const firebaseAppConfig = {
+export const firebaseAppConfig = {
     apiKey: "AIzaSyBcI2CdsLJ34JiTi_mIEP4e66X1frk4BGE",
     authDomain: "glaucoma-manager.firebaseapp.com",
     databaseURL: "https://glaucoma-manager.firebaseio.com",
@@ -87,6 +88,7 @@ const firebaseAuthConfig = {
     MyApp,
     HomePage,
     ModalAgreementPage,
+    ModalEvaluationNotFinishedPage,
     ModalIntroFr2Page,
     ModalIntroFr3Page,
     ModalIntroFr4Page,
@@ -115,8 +117,9 @@ const firebaseAuthConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseAppConfig, firebaseAuthConfig),
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseAppConfig, firebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -138,6 +141,7 @@ const firebaseAuthConfig = {
     MyApp,
     HomePage,
     ModalAgreementPage,
+    ModalEvaluationNotFinishedPage,
     ModalIntroFr2Page,
     ModalIntroFr3Page,
     ModalIntroFr4Page,

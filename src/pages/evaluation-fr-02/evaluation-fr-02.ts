@@ -1,3 +1,6 @@
+import { Answer } from './../../models/answer.model';
+import { EvaluationService } from './../../providers/evaluation.service';
+import { ModalEvaluationNotFinishedPage } from './../modal-evaluation-not-finished/modal-evaluation-not-finished';
 import { Evaluation } from './../../models/evaluation.model';
 import { EvaluationFRWhyPage } from './../evaluation-fr-why/evaluation-fr-why';
 import { ModalIntroFr2Page } from './../modal-intro-fr-02/modal-intro-fr-02';
@@ -17,9 +20,11 @@ export class EvaluationFR2Page {
   evaluationForm2: FormGroup;
   incerteza: boolean = false;
   evaluation: Evaluation;
-  
+  answer: Answer;
+
   constructor(
     public authService: AuthService,
+    public evaluationService: EvaluationService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
     public modalCtrl: ModalController,    
@@ -35,14 +40,14 @@ export class EvaluationFR2Page {
           why: ['', [Validators.required]]
         });
 
-      this.evaluation = navParams.get('evaluation'); 
+      this.evaluation = navParams.get('evaluation') as Evaluation; 
 
-      console.log("teste id avaliação: " + this.evaluation.uid)
+      this.answer = new Answer("FR-02");    
   }
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'user-menu');   
-    
+
     let introModal = this.modalCtrl.create(ModalIntroFr2Page);
     
     introModal.present();
@@ -59,21 +64,38 @@ export class EvaluationFR2Page {
 
     ///TODO: Salvar a resposta no BD
 
+    this.answer.answered = true;
+    this.answer.answer = fr02;
+    this.answer.answered = true;
+
     if (fr02 == 'incerteza'){
       this.incerteza = true;  
     }
     else {
+      this.saveAnswer();
+    
       this.navCtrl.push(EvaluationFR3Page);
     }
   }
 
   onSubmit2(): void {
-    ///TODO: Salvar a resposta da resposta no BD
+    let evaluationForm = this.evaluationForm2.value;
     
+    let fr02Why = evaluationForm.why;
+
+    this.answer.why = fr02Why;
+    
+    this.saveAnswer();
+
     this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR3Page, FR: 2});
   }
 
-  voltar(): void {
+  back(): void {
     this.incerteza = false;
   }
+
+  saveAnswer(): void {
+    this.evaluationService.saveAnswer(this.evaluation, this.answer);
+  }
+  
 }

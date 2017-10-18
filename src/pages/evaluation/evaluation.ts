@@ -1,10 +1,12 @@
+import { ModalEvaluationNotFinishedPage } from './../modal-evaluation-not-finished/modal-evaluation-not-finished';
+import { FirebaseObjectObservable } from 'angularFire2';
 import { Evaluation } from './../../models/evaluation.model';
 import { EvaluationService } from './../../providers/evaluation.service';
 import { UserService } from './../../providers/user.service';
 import { EvaluationFR2Page } from './../evaluation-fr-02/evaluation-fr-02';
 import { AuthService } from './../../providers/auth.service';
 import { Component, Input } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { User } from "../../models/user.model";
 import firebase from "firebase";
 
@@ -20,6 +22,7 @@ export class EvaluationPage {
     public authService: AuthService,
     public evaluationSevice: EvaluationService,
     public menuCtrl: MenuController,
+    public modalCtrl: ModalController,
     public navCtrl: NavController,
     public userService: UserService
   ) {}
@@ -39,28 +42,42 @@ export class EvaluationPage {
   }
 
   startEvaluation() {
-        this.evaluationSevice.evaluationStartedNotFinished(this.user.uid)
-          .first()
-          .subscribe((evaluationNotFinished: boolean) => {
-              if (!evaluationNotFinished){
-                this.newEvaluation();
-              }
-              else
-              {
-                console.log("Existe uma avaliação já iniciada!");
-              }
+      this.evaluationSevice.evaluationStartedNotFinished(this.user.uid)
+        .first()
+        .subscribe((evaluationNotFinished: boolean) => {
+            let newEvaluation: boolean = false;
+
+            if (!evaluationNotFinished) {
+              console.log("Nova avaliação!"); 
+
+              this.newEvaluation();
+
+              newEvaluation = true;
+
+              this.goAnswer();
+            }
+            else {
+              console.log("Existe uma avaliação já iniciada!");
+
+              let newEvaluationModal = this.modalCtrl.create(ModalEvaluationNotFinishedPage);
               
-              let evaluation = this.evaluationSevice.getCurrentEvaluation(this.user.uid);
+              newEvaluationModal.present();
 
-              console.log(evaluation);
-
-              this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation});        
-          });
+              newEvaluationModal.onDidDismiss(() => this.goAnswer());
+            }
+        });
   }
 
-    private newEvaluation() {
-        let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
-        let evaluation = new Evaluation(timestamp, false);
-        this.evaluationSevice.create(evaluation, this.user.uid);
-    }
+  private newEvaluation() {
+      let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
+      let evaluation = new Evaluation(timestamp, false);
+      this.evaluationSevice.create(evaluation, this.user.uid);
+  }
+
+  private goAnswer() {
+    this.evaluationSevice.getCurrentEvaluation(this.user.uid)
+      .subscribe((evaluation: Evaluation) => { 
+        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
+    });  
+  }
 }
