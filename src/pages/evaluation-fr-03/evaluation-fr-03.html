@@ -15,68 +15,68 @@
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
   
     <h4>Trauma em OD</h4>  
-    <ion-list radio-group formControlName="riskFactorOD" text-wrap>
+    <ion-list radio-group formControlName="riskFactorRE" text-wrap [(ngModel)]="answer.answerRE">
       
       <ion-item>
         <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
-        <ion-radio (ionSelect)="answerOD()" value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerRE()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio (ionSelect)="answerOD()" value="10"></ion-radio>
+        <ion-radio (ionSelect)="answerRE()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
-        <ion-radio (ionSelect)="answerOD()" value="30"></ion-radio>
+        <ion-radio (ionSelect)="answerRE()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio (ionSelect)="answerOD()" value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerRE()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
 
     <h4>Trauma em OE</h4>  
-    <ion-list radio-group formControlName="riskFactorOE" text-wrap>
+    <ion-list radio-group formControlName="riskFactorLE" text-wrap [(ngModel)]="answer.answerLE">
       
       <ion-item>
         <ion-label>Turvação visual importante por mais de 03 dias</ion-label>
-        <ion-radio (ionSelect)="answerOE()" value="3"></ion-radio>
+        <ion-radio (ionSelect)="answerLE()" value="3"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual por mais de 10 dias</ion-label>
-        <ion-radio (ionSelect)="answerOE()" value="10"></ion-radio>
+        <ion-radio (ionSelect)="answerLE()" value="10"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Turvação visual importante por mais de 30 dias</ion-label>
-        <ion-radio (ionSelect)="answerOE()" value="30"></ion-radio>
+        <ion-radio (ionSelect)="answerLE()" value="30"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>Nunca</ion-label>
-        <ion-radio (ionSelect)="answerOE()" value="0"></ion-radio>
+        <ion-radio (ionSelect)="answerLE()" value="0"></ion-radio>
       </ion-item>
 
     </ion-list>
 
-<div *ngIf="!answeredOD && !answeredOE">
+<div *ngIf="!answeredRE && !answeredLE">
 
   <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
-  <ion-list radio-group formControlName="why" text-wrap>
+  <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
     
     <ion-item>
       <ion-label>Não compreendi a questão</ion-label>
-      <ion-radio value="compreensao"></ion-radio>
+      <ion-radio (ionSelect)="answerWhy()" value="compreensao"></ion-radio>
     </ion-item>
 
     <ion-item>
       <ion-label>Não tenho informações sobre isto</ion-label>
-      <ion-radio value="informacao"></ion-radio>
+      <ion-radio (ionSelect)="answerWhy()" value="informacao"></ion-radio>
     </ion-item>
 
   </ion-list>

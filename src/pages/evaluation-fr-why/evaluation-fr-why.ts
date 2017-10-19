@@ -1,3 +1,6 @@
+import { Evaluation } from './../../models/evaluation.model';
+import { EvaluationService } from './../../providers/evaluation.service';
+import { Answer } from './../../models/answer.model';
 import { AuthService } from './../../providers/auth.service';
 import { FormGroup, FormBuilder } from '@angular/forms/';
 import { Component } from '@angular/core';
@@ -10,11 +13,14 @@ import { NavController, NavParams, MenuController } from 'ionic-angular';
 export class EvaluationFRWhyPage {
   evaluationForm: FormGroup;
   destinationPage;
-  FR: number;
+  answer: Answer;
+  evaluation: Evaluation;
   opened: boolean = false;
 
-  constructor(
+  constructor
+  (
     public authService: AuthService,
+    public evaluationService: EvaluationService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
@@ -25,10 +31,10 @@ export class EvaluationFRWhyPage {
       });
 
      this.destinationPage = navParams.get('destinationPage'); 
-     this.FR = navParams.get('FR'); 
 
-     console.log('FR: ' + this.FR);
-     
+     this.answer = navParams.get('answer') as Answer; 
+
+     this.evaluation = navParams.get('evaluation') as Evaluation; 
   }
   
   ionViewDidLoad() {
@@ -48,13 +54,9 @@ export class EvaluationFRWhyPage {
   }
 
   onSubmit(): void {
-    let evaluationForm = this.evaluationForm.value;
-    
-    let why = evaluationForm.why;
+    this.evaluationService.saveAnswer(this.evaluation, this.answer);
 
-    ///TODO: Salvar a resposta no BD
-
-    this.navCtrl.push(this.destinationPage);
+    this.navCtrl.push(this.destinationPage, {evaluation: this.evaluation});
   }
 
   voltar(): void {

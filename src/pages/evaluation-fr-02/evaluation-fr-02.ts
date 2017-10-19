@@ -17,12 +17,13 @@ import { NavController, NavParams, MenuController, ModalController } from 'ionic
 export class EvaluationFR2Page {
 
   evaluationForm: FormGroup;
-  evaluationForm2: FormGroup;
+  evaluationFormWhy: FormGroup;
   incerteza: boolean = false;
   evaluation: Evaluation;
   answer: Answer;
 
-  constructor(
+  constructor
+  (
     public authService: AuthService,
     public evaluationService: EvaluationService,
     public formBuilder: FormBuilder,
@@ -30,19 +31,20 @@ export class EvaluationFR2Page {
     public modalCtrl: ModalController,    
     public navCtrl: NavController,
     public navParams: NavParams    
-  ) 
-  {
-      this.evaluationForm = this.formBuilder.group({
-          riskFactor: ['', [Validators.required]]
-        });
+  ) {
+    this.evaluationForm = this.formBuilder.group({
+        riskFactor: ['', [Validators.required]]
+      });
 
-      this.evaluationForm2 = this.formBuilder.group({
-          why: ['', [Validators.required]]
-        });
+    this.evaluationFormWhy = this.formBuilder.group({
+        why: ['', [Validators.required]]
+      });
 
-      this.evaluation = navParams.get('evaluation') as Evaluation; 
+    this.evaluation = navParams.get('evaluation') as Evaluation; 
 
-      this.answer = new Answer("FR-02");    
+    this.answer = new Answer("FR-02");    
+
+    this.checkAnswer();
   }
 
   ionViewDidLoad() {
@@ -62,39 +64,47 @@ export class EvaluationFR2Page {
     
     let fr02 = evaluationForm.riskFactor;
 
-    ///TODO: Salvar a resposta no BD
-
-    this.answer.answered = true;
-    this.answer.answer = fr02;
-    this.answer.answered = true;
-
     if (fr02 == 'incerteza'){
       this.incerteza = true;  
     }
     else {
       this.saveAnswer();
     
-      this.navCtrl.push(EvaluationFR3Page);
+      this.navCtrl.push(EvaluationFR3Page, {evaluation: this.evaluation});
     }
   }
 
-  onSubmit2(): void {
-    let evaluationForm = this.evaluationForm2.value;
-    
-    let fr02Why = evaluationForm.why;
-
-    this.answer.why = fr02Why;
-    
+  onSubmitWhy(): void {
     this.saveAnswer();
 
-    this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR3Page, FR: 2});
+    this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR3Page, evaluation: this.evaluation, answer: this.answer});
   }
 
   back(): void {
     this.incerteza = false;
   }
 
+  private checkAnswer() {
+    this.evaluationService.questionAnswered(this.evaluation, this.answer)
+        .first()
+        .subscribe((questionAnswered: boolean) => {
+            if (questionAnswered) {
+                this.evaluationService.getAnswer(this.evaluation, this.answer)
+                    .subscribe((savedAnswer: Answer) => {
+                        if (savedAnswer) {
+                            this.answer = savedAnswer;
+                        }
+                    });
+            }
+            else {
+                console.log("question not answered yet");
+            }
+        });
+  }
+  
   saveAnswer(): void {
+    this.answer.answered = true;
+    
     this.evaluationService.saveAnswer(this.evaluation, this.answer);
   }
   

@@ -1,3 +1,6 @@
+import { Answer } from './../../models/answer.model';
+import { Evaluation } from './../../models/evaluation.model';
+import { EvaluationService } from './../../providers/evaluation.service';
 import { ModalIntroFr3Page } from './../modal-intro-fr-03/modal-intro-fr-03';
 import { EvaluationFR4Page } from './../evaluation-fr-04/evaluation-fr-04';
 import { AuthService } from './../../providers/auth.service';
@@ -14,26 +17,37 @@ import { EvaluationFRWhyPage } from '../evaluation-fr-why/evaluation-fr-why';
 export class EvaluationFR3Page {
 
   evaluationForm: FormGroup;
-  answeredOD: boolean = false;
-  answeredOE: boolean = false;
+  answeredRE: boolean = false;
+  answeredLE: boolean = false;
+  evaluation: Evaluation;
+  answer: Answer;
   
-  constructor(
+  constructor
+  (
     public authService: AuthService,
+    public evaluationService: EvaluationService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
-    public modalCtrl: ModalController, 
-    public navCtrl: NavController
+    public modalCtrl: ModalController,    
+    public navCtrl: NavController,
+    public navParams: NavParams   
   ) {
       this.evaluationForm = this.formBuilder.group({
           why: '',      
-          riskFactorOD: '',
-          riskFactorOE: ''
+          riskFactorRE: '',
+          riskFactorLE: ''
         }, {validator: this.checkFields()});
+
+      this.evaluation = navParams.get('evaluation') as Evaluation; 
+        
+      this.answer = new Answer("FR-03"); 
+
+      this.checkAnswer();
   }
 
   checkFields(){
     return (group: FormGroup): {[key: string]: any} => {
-        if (group.controls['riskFactorOD'].value && group.controls['riskFactorOE'].value) {
+        if (group.controls['riskFactorRE'].value && group.controls['riskFactorLE'].value) {
           return null;
         }
         else if (group.controls['why'].value) {
@@ -58,27 +72,53 @@ export class EvaluationFR3Page {
   }
 
   onSubmit(): void {
-    let evaluationForm = this.evaluationForm.value;
-    
-    let fr03OD = evaluationForm.riskFactorOD;
-    let fr03OE = evaluationForm.riskFactorOE;
-    let why = evaluationForm.why;
+    if (!this.answer.why) {
+      this.saveAnswer();
 
-    ///TODO: Salvar a resposta no BD
-    ///Validações na hora de salvar pra salvar somente o necessário
-    
-    if (!why) {
-      this.navCtrl.push(EvaluationFR4Page);
+      this.navCtrl.push(EvaluationFR4Page, {evaluation: this.evaluation});
     } else {
-      this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR4Page, FR: 3});      
+      this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR4Page, evaluation: this.evaluation, answer: this.answer});      
     }
   }
 
-  answerOD(){
-    this.answeredOD = true;
+  answerRE(){
+    this.answeredRE = true;
+    this.answer.why = null;
   }
 
-  answerOE(){
-    this.answeredOE = true;
+  answerLE(){
+    this.answeredLE = true;
+    this.answer.why = null;
   }
+
+  answerWhy(){
+    this.answer.answerRE = null;
+    this.answer.answerLE = null;
+  }
+
+  private checkAnswer() {
+    this.evaluationService.questionAnswered(this.evaluation, this.answer)
+        .first()
+        .subscribe((questionAnswered: boolean) => {
+            if (questionAnswered) {
+                this.evaluationService.getAnswer(this.evaluation, this.answer)
+                    .subscribe((savedAnswer: Answer) => {
+                        if (savedAnswer) {
+                            this.answer = savedAnswer;
+                        }
+                    });
+            }
+            else {
+                console.log("question not answered yet");
+            }
+        });
+  }
+
+  saveAnswer(): void {
+    this.answer.why = null;
+    this.answer.answered = true;
+
+    this.evaluationService.saveAnswer(this.evaluation, this.answer);
+  }
+  
 }

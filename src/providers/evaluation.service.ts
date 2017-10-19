@@ -20,6 +20,7 @@ export class EvaluationService extends BaseService {
 
   create(evaluation: Evaluation, userId: string): firebase.Promise<void> {
     evaluation.uid = "evaluation-" + Date.now();
+    
     return  this.af.database.object(`/evaluations/${userId}/${evaluation.uid}/`)
       .set(evaluation)
       .catch(this.handlePromiseError);
@@ -60,8 +61,41 @@ export class EvaluationService extends BaseService {
 
   saveAnswer(evaluation: Evaluation, answer: Answer): firebase.Promise<void> {
     answer.root = "answers-" + evaluation.uid;
+    
     return  this.af.database.object(`/answers/${answer.root}/${answer.riskFactor}/`)
       .set(answer)
       .catch(this.handlePromiseError);
+  }
+
+  questionAnswered(evaluation: Evaluation, answer: Answer): Observable<boolean> {
+    answer.root = "answers-" + evaluation.uid;
+    
+    return this.af.database.list(`/answers/${answer.root}/`, { 
+      preserveSnapshot: true,
+      query: {
+        orderByChild: 'riskFactor',
+        equalTo: answer.riskFactor,
+      }
+    })
+      .map((answers: Answer[]) => {
+        return answers.length > 0
+      })
+      .catch(this.handleObservableError);
+  }
+
+  getAnswer(evaluation: Evaluation, answer: Answer): Observable<Answer> {
+    answer.root = "answers-" + evaluation.uid;
+    
+    return this.af.database.list(`/answers/${answer.root}/`, { 
+      preserveSnapshot: true,
+      query: {
+        orderByChild: 'riskFactor',
+        equalTo: answer.riskFactor,
+      }
+    })
+      .map(snapshots => {
+        return snapshots[0].val() as Answer;
+      })
+      .catch(this.handleObservableError);
   }
 }

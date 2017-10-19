@@ -13,7 +13,7 @@
   Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong>
 </h3>
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
-  <ion-list radio-group formControlName="riskFactor" text-wrap>
+  <ion-list radio-group formControlName="riskFactor" text-wrap [(ngModel)]="answer.answer">
     
     <ion-item>
       <ion-label>Caucasiana ou "Branca"</ion-label>
@@ -51,8 +51,8 @@ ascendência até primeiro grau, isto é, até pai e mãe apenas;
 
 <div *ngIf="incerteza">
 <h3>Informe o motivo de sua resposta em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
-<form [formGroup]="evaluationForm2" (ngSubmit)="onSubmit2(); $event.preventDefault()">
-  <ion-list radio-group formControlName="why" text-wrap>
+<form [formGroup]="evaluationFormWhy" (ngSubmit)="onSubmitWhy(); $event.preventDefault()">
+  <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
     
     <ion-item>
       <ion-label>Não compreendi a questão</ion-label>
@@ -71,7 +71,7 @@ ascendência até primeiro grau, isto é, até pai e mãe apenas;
 
   </ion-list>
 
-  <button ion-button full type="submit" [disabled]="evaluationForm2.invalid">Confirmar</button>
+  <button ion-button full type="submit" [disabled]="evaluationFormWhy.invalid">Confirmar</button>
   <button ion-button full (click)="back()">Voltar</button>
 </form>
 </div>

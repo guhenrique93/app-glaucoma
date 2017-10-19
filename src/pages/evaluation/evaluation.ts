@@ -20,7 +20,7 @@ export class EvaluationPage {
 
   constructor(
     public authService: AuthService,
-    public evaluationSevice: EvaluationService,
+    public evaluationService: EvaluationService,
     public menuCtrl: MenuController,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
@@ -42,7 +42,7 @@ export class EvaluationPage {
   }
 
   startEvaluation() {
-      this.evaluationSevice.evaluationStartedNotFinished(this.user.uid)
+      this.evaluationService.evaluationStartedNotFinished(this.user.uid)
         .first()
         .subscribe((evaluationNotFinished: boolean) => {
             let newEvaluation: boolean = false;
@@ -71,11 +71,11 @@ export class EvaluationPage {
   private newEvaluation() {
       let timestamp: Object = firebase.database.ServerValue.TIMESTAMP; //Date.now();
       let evaluation = new Evaluation(timestamp, false);
-      this.evaluationSevice.create(evaluation, this.user.uid);
+      this.evaluationService.create(evaluation, this.user.uid);
   }
 
   private goAnswer() {
-    this.evaluationSevice.getCurrentEvaluation(this.user.uid)
+    this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
         this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
     });  
