@@ -21,6 +21,8 @@ export class EvaluationFR3Page {
   answeredLE: boolean = false;
   evaluation: Evaluation;
   answer: Answer;
+  showRE: boolean = true;
+  textButton: string = "Avançar para OE";
   
   constructor
   (
@@ -77,6 +79,8 @@ export class EvaluationFR3Page {
 
       this.navCtrl.push(EvaluationFR4Page, {evaluation: this.evaluation});
     } else {
+      this.answerWhy();
+      
       this.navCtrl.push(EvaluationFRWhyPage, {destinationPage: EvaluationFR4Page, evaluation: this.evaluation, answer: this.answer});      
     }
   }
@@ -120,5 +124,14 @@ export class EvaluationFR3Page {
 
     this.evaluationService.saveAnswer(this.evaluation, this.answer);
   }
-  
+
+  backForward(): void {
+    this.showRE = !this.showRE;
+
+    if (this.showRE) {
+      this.textButton = "Avançar para OE";
+    } else {
+      this.textButton = "Voltar para OD";
+    }
+  }
 }

@@ -18,7 +18,7 @@ export class EvaluationFR2Page {
 
   evaluationForm: FormGroup;
   evaluationFormWhy: FormGroup;
-  incerteza: boolean = false;
+  doubt: boolean = false;
   evaluation: Evaluation;
   answer: Answer;
 
@@ -65,7 +65,7 @@ export class EvaluationFR2Page {
     let fr02 = evaluationForm.riskFactor;
 
     if (fr02 == 'incerteza'){
-      this.incerteza = true;  
+      this.doubt = true;  
     }
     else {
       this.saveAnswer();
@@ -81,7 +81,7 @@ export class EvaluationFR2Page {
   }
 
   back(): void {
-    this.incerteza = false;
+    this.doubt = false;
   }
 
   private checkAnswer() {

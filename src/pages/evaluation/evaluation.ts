@@ -57,7 +57,7 @@ export class EvaluationPage {
               this.goAnswer();
             }
             else {
-              console.log("Existe uma avaliação já iniciada!");
+              console.log("Existe uma avaliação não concluída!");
 
               let newEvaluationModal = this.modalCtrl.create(ModalEvaluationNotFinishedPage);
               

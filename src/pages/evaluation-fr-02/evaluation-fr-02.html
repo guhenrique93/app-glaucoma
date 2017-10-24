@@ -8,7 +8,7 @@
 
 <ion-content padding>
 
-<div *ngIf="!incerteza">
+<div *ngIf="!doubt">
 <h3>
   Assinale a melhor opção que lhe representa quanto à <strong>RAÇA</strong>
 </h3>
@@ -49,7 +49,7 @@ ascendência até primeiro grau, isto é, até pai e mãe apenas;
 
 </div>
 
-<div *ngIf="incerteza">
+<div *ngIf="doubt">
 <h3>Informe o motivo de sua resposta em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
 <form [formGroup]="evaluationFormWhy" (ngSubmit)="onSubmitWhy(); $event.preventDefault()">
   <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
