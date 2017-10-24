@@ -16,32 +16,32 @@ médico. Selecione as três últimas medidas obtidas em cada olho, calcule a mé
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
   <h4>Média das últimas medidas da PIO em OD</h4>  
   <ion-item>  
-    <ion-input type="number" placeholder="0" formControlName="riskFactorOD"></ion-input>
+    <ion-input [(ngModel)]="answer.answerRE" type="number" placeholder="0" formControlName="riskFactorRE" (input)="answerRE()" ></ion-input>
   </ion-item>  
 
   <h4>Média das últimas medidas da PIO em OE</h4>  
   <ion-item>  
-    <ion-input type="number" placeholder="0" formControlName="riskFactorOE"></ion-input>
+    <ion-input [(ngModel)]="answer.answerLE" type="number" placeholder="0" formControlName="riskFactorLE" (input)="answerLE()"></ion-input>
   </ion-item>  
 
-  <div *ngIf="!riskFactorOD && !riskFactorOE">
-      <br />
-      <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
-      <ion-list radio-group formControlName="why" text-wrap>
-        
-        <ion-item>
-          <ion-label>Não compreendi a questão</ion-label>
-          <ion-radio value="compreensao"></ion-radio>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label>Não tenho e não consigo informações sobre isto</ion-label>
-          <ion-radio value="informacao"></ion-radio>
-        </ion-item>
-    
-      </ion-list>
-    
-    </div>
+  <!--<div *ngIf="!riskFactorOD && !riskFactorOE">-->
+  <div>
+    <br />
+    <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+    <ion-list radio-group formControlName="why" text-wrap  [(ngModel)]="answer.why">
+      
+      <ion-item>
+        <ion-label>Não compreendi a questão</ion-label>
+        <ion-radio (ionSelect)="answerWhy()" value="compreensao"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Não tenho e não consigo informações sobre isto</ion-label>
+        <ion-radio (ionSelect)="answerWhy()" value="informacao"></ion-radio>
+      </ion-item>
+  
+    </ion-list>
+  </div>
 
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
 

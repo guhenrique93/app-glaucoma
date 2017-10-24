@@ -20,8 +20,9 @@ export class EvaluationService extends BaseService {
 
   create(evaluation: Evaluation, userId: string): firebase.Promise<void> {
     evaluation.uid = "evaluation-" + Date.now();
+    evaluation.root = `/evaluations/${userId}/${evaluation.uid}/`;
     
-    return  this.af.database.object(`/evaluations/${userId}/${evaluation.uid}/`)
+    return  this.af.database.object(evaluation.root)
       .set(evaluation)
       .catch(this.handlePromiseError);
   }
@@ -57,6 +58,14 @@ export class EvaluationService extends BaseService {
         return snapshots[0].val() as Evaluation;
       })
       .catch(this.handleObservableError);
+  }
+
+  finishEvaluation(evaluation: Evaluation): firebase.Promise<void> {
+    evaluation.finished = true;
+    
+    return  this.af.database.object(evaluation.root)
+      .set(evaluation)
+      .catch(this.handlePromiseError);
   }
 
   saveAnswer(evaluation: Evaluation, answer: Answer): firebase.Promise<void> {

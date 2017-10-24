@@ -13,9 +13,9 @@
 </h3>
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
-      
+  <div *ngIf="showA">   
     <h4>Quanto à freqüência semanal da AF</h4>  
-    <ion-list radio-group formControlName="riskFactorA" text-wrap>
+    <ion-list radio-group formControlName="riskFactorA" text-wrap [(ngModel)]="answer.answerA">
       
         <ion-item>
         <ion-label>Nenhuma prática regular de atividade física</ion-label>
@@ -33,9 +33,13 @@
       </ion-item>
 
     </ion-list>
+  </div>
 
+  <br/><button type="button" ion-button full (click)="backForward()">{{textButton}}</button><br/>
+    
+  <div *ngIf="!showA">
     <h4>Quanto à duração diária da AF</h4>  
-    <ion-list radio-group formControlName="riskFactorB" text-wrap>
+    <ion-list radio-group formControlName="riskFactorB" text-wrap [(ngModel)]="answer.answerB">
       
       <ion-item>
         <ion-label>Máxima de 15 minutos no dia da atividade</ion-label>
@@ -53,25 +57,24 @@
       </ion-item>
 
     </ion-list>
-
-    <div *ngIf="!answeredRA && !answeredRB">
+  </div>
+    <!--<div *ngIf="!answeredRA && !answeredRB">-->
+    <div>
+      <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+      <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
         
-        <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
-        <ion-list radio-group formControlName="why" text-wrap>
-          
-          <ion-item>
-            <ion-label>Não compreendi a questão</ion-label>
-            <ion-radio value="compreensao"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Sofro de condição física ou cerebral que me impede de me movimentar</ion-label>
-            <ion-radio value="condicao"></ion-radio>
-          </ion-item>
-      
-        </ion-list>
-      
-      </div>
+        <ion-item>
+          <ion-label>Não compreendi a questão</ion-label>
+          <ion-radio (ionSelect)="answerWhy()" value="compreensao"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Sofro de condição física ou cerebral que me impede de me movimentar</ion-label>
+          <ion-radio (ionSelect)="answerWhy()" value="condicao"></ion-radio>
+        </ion-item>
+    
+      </ion-list>
+    </div>
 
     <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
 
