@@ -1,3 +1,5 @@
+import { TutorialPage } from './../pages/tutorial/tutorial';
+import { AboutPage } from './../pages/about/about';
 import { ModalEvaluationNotFinishedPage } from './../pages/modal-evaluation-not-finished/modal-evaluation-not-finished';
 import { EvaluationService } from './../providers/evaluation.service';
 import { AnswerConfirmationPage } from './../pages/answer-confirmation/answer-confirmation';
@@ -70,6 +72,7 @@ const firebaseAuthConfig = {
 
 @NgModule({
   declarations: [
+    AboutPage,
     AnswerConfirmationPage,
     CustomLoggedHeaderComponent,
     EvaluationPage,
@@ -111,6 +114,7 @@ const firebaseAuthConfig = {
     SignupPasswordPage,
     SignupResidenceplacePage,
     SignupScholarityPage,
+    TutorialPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage
@@ -123,6 +127,7 @@ const firebaseAuthConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AboutPage,
     AnswerConfirmationPage,
     CustomLoggedHeaderComponent,
     EvaluationPage,    
@@ -164,6 +169,7 @@ const firebaseAuthConfig = {
     SignupPasswordPage,
     SignupResidenceplacePage,
     SignupScholarityPage,
+    TutorialPage,
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage

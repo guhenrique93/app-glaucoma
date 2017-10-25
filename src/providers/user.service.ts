@@ -35,7 +35,8 @@ export class UserService extends BaseService{
     .catch(this.handlePromiseError);
   }
 
-  edit(user: {name: string, username: string }): firebase.Promise<void> {
+  edit(user: {name: string, birthday: Date, residencePlace: string})
+    : firebase.Promise<void> {
     return this.currentUser
       .update(user)
       .catch(this.handlePromiseError);

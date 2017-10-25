@@ -40,7 +40,8 @@ export class UserProfilePage {
     this.userService
       .edit( {
         name: this.currentUser.name,
-        username: this.currentUser.username
+        birthday: this.currentUser.birthday,
+        residencePlace: this.currentUser.residencePlace
       }).then(() => {
           this.canEdit = false;
       });

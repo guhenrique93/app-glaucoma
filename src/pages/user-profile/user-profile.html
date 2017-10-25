@@ -1,6 +1,6 @@
 <ion-header>
 
-    <custom-logged-header [title]="'User Profile'"></custom-logged-header>
+    <custom-logged-header [title]="'Perfil'"></custom-logged-header>
 
 </ion-header>
 
@@ -8,7 +8,7 @@
 <ion-content padding>
   <user-info [user]="currentUser"></user-info>
 
-  <button ion-button block (click)="canEdit = !canEdit">Edit</button>
+  <button ion-button block (click)="canEdit = !canEdit">Editar</button>
 
   <form (ngSubmit)="onSubmit($event)" *ngIf="canEdit" #profileForm="ngForm">
     
@@ -25,18 +25,21 @@
     </ion-item>
 
     <ion-item>
-      <ion-icon name="at" item-left color="primary"> </ion-icon>
-      <ion-input
-        type="text" 
-        placeholder="Username" 
-        name="username"
-        [(ngModel)]="currentUser.username"
-        required
-        min-lenght="3">
-      </ion-input>
+      <ion-icon name="calendar" item-left color="primary"> </ion-icon>
+      <ion-datetime 
+          displayFormat="DD/MMM/YYYY" 
+          doneText="Ok"
+          name="birthday" 
+          [(ngModel)]="currentUser.birthday">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-icon name="home" item-left color="primary"> </ion-icon>
+        <ion-input type="text" name="residencePlace" [(ngModel)]="currentUser.residencePlace" required></ion-input>
     </ion-item>
     
-    <button ion-button block type="submit" [disabled]="profileForm.form.invalid">Save</button>
+    <br/><button ion-button block type="submit" [disabled]="profileForm.form.invalid">Salvar</button>
 
   </form>
 </ion-content>

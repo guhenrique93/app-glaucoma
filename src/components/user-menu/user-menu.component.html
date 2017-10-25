@@ -1,14 +1,22 @@
 <ion-content>
   <user-info [user]="currentUser" [isMenu]="true"></user-info>
 
-  <ion-list no-lines>
+  <ion-list>
     <button ion-item icon-right detail-none menuClose="user-menu" (click)="onProfile()">
       Perfil
-      <ion-icon name="person"></ion-icon>
+      <ion-icon name="contact"></ion-icon>
     </button>
     <button ion-item icon-right detail-none menuClose="user-menu" (click)="openAgreement()">
       Termos de uso
-      <ion-icon name="information"></ion-icon>
+      <ion-icon name="information-circle"></ion-icon>
+    </button>
+    <button ion-item icon-right detail-none menuClose="user-menu" (click)="openTutorial()">
+        Tutoriais
+      <ion-icon name="list"></ion-icon>
+    </button>
+    <button ion-item icon-right detail-none menuClose="user-menu" (click)="openAbout()">
+      Sobre
+      <ion-icon name="at"></ion-icon>
     </button>
     <button ion-item icon-right detail-none menuClose="user-menu" (click)="onLogout()">
       Sair
