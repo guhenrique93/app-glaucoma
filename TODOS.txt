@@ -4,3 +4,5 @@
 -cadastro e utilizacao do termo de uso no BD
 -cadastro e utilizacao do texto de apresentacao do questionario de avaliacao no BD
 -validacoes das respostas dos fatores de risco
+-imagens free adequadas
+-reorganizar os níveis para as respostas de BD

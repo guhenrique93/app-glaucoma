@@ -1,3 +1,5 @@
+import { RiskExibitionPage } from './../pages/risk-exibition/risk-exibition';
+import { RiskCalculatorService } from './../providers/riskCalculator.service';
 import { TutorialPage } from './../pages/tutorial/tutorial';
 import { AboutPage } from './../pages/about/about';
 import { ModalEvaluationNotFinishedPage } from './../pages/modal-evaluation-not-finished/modal-evaluation-not-finished';
@@ -103,6 +105,7 @@ const firebaseAuthConfig = {
     ModalIntroFr10Page,
     ModalIntroFr11Page,
     ModalIntroFr12Page,
+    RiskExibitionPage,
     SigninPage,
     SignupPage,
     SignupAgreementPage,
@@ -158,6 +161,7 @@ const firebaseAuthConfig = {
     ModalIntroFr10Page,
     ModalIntroFr11Page,
     ModalIntroFr12Page,
+    RiskExibitionPage,
     SigninPage,
     SignupPage,
     SignupAgreementPage,
@@ -177,6 +181,7 @@ const firebaseAuthConfig = {
   providers: [
     AuthService,
     EvaluationService,
+    RiskCalculatorService,
     StatusBar,
     SplashScreen,
     UserService,

@@ -1,3 +1,4 @@
+import { RiskExibitionPage } from './../risk-exibition/risk-exibition';
 import { EvaluationService } from './../../providers/evaluation.service';
 import { Evaluation } from './../../models/evaluation.model';
 import { HomePage } from './../home/home';
@@ -33,7 +34,9 @@ export class AnswerConfirmationPage {
 
     alert("Calculando risco... (é só um teste)");
 
-    this.goHome();
+    //this.goHome();
+
+    this.navCtrl.setRoot(RiskExibitionPage, {evaluation: this.evaluation});
   }
 
   salvarDados() {

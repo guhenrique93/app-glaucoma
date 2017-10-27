@@ -1,3 +1,4 @@
+import { EvaluationFR12Page } from './../evaluation-fr-12/evaluation-fr-12';
 import { ModalEvaluationNotFinishedPage } from './../modal-evaluation-not-finished/modal-evaluation-not-finished';
 import { FirebaseObjectObservable } from 'angularFire2';
 import { Evaluation } from './../../models/evaluation.model';
@@ -77,7 +78,7 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR12Page, {evaluation: evaluation}); 
     });  
   }
 }
