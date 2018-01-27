@@ -22,13 +22,15 @@ export class RiskCalculatorService extends BaseService {
 
   calculateRisk(evaluation: Evaluation) {
     console.log("calculating risk...");
-    this.calculateFR02(evaluation);
+    this.calculateFR12(evaluation);
   }
 
-  private calculateFR02(evaluation: Evaluation) {
-      let answer: Answer = new Answer("FR-02");
+  private calculateFR12(evaluation: Evaluation) {
+      let answer: Answer = new Answer("FR-12");
 
-      console.log("calculating FR-02", answer);
+      console.log("calculating FR-12", answer);
+      console.log("EVALUATION UID", evaluation.uid);
+      console.log("EVALUATION USER ID", evaluation.userId);
 
       this.evaluationService.getAnswer(evaluation, answer)
       .subscribe((savedAnswer: Answer) => {
@@ -37,10 +39,10 @@ export class RiskCalculatorService extends BaseService {
           if (savedAnswer) {
               answer = savedAnswer;
 
-              console.log("FR-02: " + answer.answerA);
+              console.log("FR-12: " + answer.answerA);
           }
           else {
-              console.log("FR-02 not answered");
+              console.log("FR-12 not answered");
           }
       });
   }
