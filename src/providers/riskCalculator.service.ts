@@ -21,16 +21,17 @@ export class RiskCalculatorService extends BaseService {
   }
 
   calculateRisk(evaluation: Evaluation) {
-    console.log("calculating risk...");
+    console.log("CALCULATING RISK...");
+    this.calculateFR11(evaluation);
     this.calculateFR12(evaluation);
   }
 
-  private calculateFR12(evaluation: Evaluation) {
-      let answer: Answer = new Answer("FR-12");
+  private calculateFR11(evaluation: Evaluation) {
+      let answer: Answer = new Answer("FR-11");
 
-      console.log("calculating FR-12", answer);
-      console.log("EVALUATION UID", evaluation.uid);
-      console.log("EVALUATION USER ID", evaluation.userId);
+      console.log("calculating FR-11", answer);
+      //console.log("EVALUATION UID", evaluation.uid);
+      //console.log("EVALUATION USER ID", evaluation.userId);
 
       this.evaluationService.getAnswer(evaluation, answer)
       .subscribe((savedAnswer: Answer) => {
@@ -39,11 +40,35 @@ export class RiskCalculatorService extends BaseService {
           if (savedAnswer) {
               answer = savedAnswer;
 
-              console.log("FR-12: " + answer.answerA);
+              console.log("FR-11 answer A: " + answer.answerA);
+              console.log("FR-11 answer B: " + answer.answerB);
           }
           else {
-              console.log("FR-12 not answered");
+              console.log("FR-11 not answered");
           }
       });
   }
+
+  private calculateFR12(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-12");
+
+    console.log("calculating FR-12", answer);
+    //console.log("EVALUATION UID", evaluation.uid);
+    //console.log("EVALUATION USER ID", evaluation.userId);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-12 answer A: " + answer.answerA);
+            console.log("FR-12 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-12 not answered");
+        }
+    });
+}
 }

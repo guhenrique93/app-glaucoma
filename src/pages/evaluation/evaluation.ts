@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { User } from "../../models/user.model";
 import firebase from "firebase";
+import { EvaluationFR11Page } from '../evaluation-fr-11/evaluation-fr-11';
 
 @Component({
   selector: 'page-evaluation',
@@ -78,7 +79,7 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        this.navCtrl.push(EvaluationFR12Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR11Page, {evaluation: evaluation}); 
     });  
   }
 }

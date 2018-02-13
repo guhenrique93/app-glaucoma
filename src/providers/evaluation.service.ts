@@ -114,7 +114,7 @@ export class EvaluationService extends BaseService {
   getAnswer(evaluation: Evaluation, answer: Answer): Observable<Answer> {    
     answer.root = evaluation.userId + "/answers-" + evaluation.uid;
     
-    console.log("getAnswer answer", answer);
+    //console.log("getAnswer answer", answer);
     
     return this.af.database.list(`/answers/${answer.root}/`, { 
       preserveSnapshot: true,
@@ -124,7 +124,7 @@ export class EvaluationService extends BaseService {
       }
     })
       .map(snapshots => {
-        console.log("chegou", snapshots);
+        //console.log("chegou", snapshots);
         //console.log("getAnswer response", snapshots[0].val() as Answer);
     
         return snapshots[0].val() as Answer;
