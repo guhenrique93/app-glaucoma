@@ -5,4 +5,13 @@
 -cadastro e utilizacao do texto de apresentacao do questionario de avaliacao no BD
 -validacoes das respostas dos fatores de risco
 -imagens free adequadas
--reorganizar os níveis para as respostas de BD
+-reorganizar os níveis para as respostas de BD - OK
+-internacionalizar o app (engloba alguns dos itens acima)
+-adicionar as dicas dependendo das respostas, contidas no email "Faces Finais do App"
+-mudança no cálculo do risco poupulacional geral - email risco poupulacional geral corrigido
+
+
+-obter personalizadamente os valores das respostas para o cálculo
+-atualizar FR-06, conforme email
+-seguir a planilha para o cálculo
+-codificar o cálculo dos fatores de risco

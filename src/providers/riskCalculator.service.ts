@@ -26,6 +26,203 @@ export class RiskCalculatorService extends BaseService {
     this.calculateFR12(evaluation);
   }
 
+  private calculateFR01(evaluation: Evaluation) {
+    console.log("calculating FR-01");
+
+    //CALCULATE AGE FROM BIRTHDAY
+  }
+
+  private calculateFR02(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-02");
+
+    console.log("calculating FR-02", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-02 answer A: " + answer.answerA);
+            console.log("FR-02 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-02 not answered");
+        }
+    });
+  }
+  
+  private calculateFR03(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-03");
+
+    console.log("calculating FR-03", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-03 answer A: " + answer.answerA);
+            console.log("FR-03 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-03 not answered");
+        }
+    });
+  }
+  
+  private calculateFR04(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-04");
+
+    console.log("calculating FR-04", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-04 answer A: " + answer.answerA);
+            console.log("FR-04 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-04 not answered");
+        }
+    });
+  }
+  
+  private calculateFR05(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-05");
+
+    console.log("calculating FR-05", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-05 answer A: " + answer.answerA);
+            console.log("FR-05 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-05 not answered");
+        }
+    });
+  }
+  
+  private calculateFR06(evaluation: Evaluation) {
+    //TODO: Atualizar o FR06 conforme email
+
+    let answer: Answer = new Answer("FR-06");
+
+    console.log("calculating FR-06", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-06 answer A: " + answer.answerA);
+            console.log("FR-06 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-06 not answered");
+        }
+    });
+  }
+  
+  private calculateFR07(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-07");
+
+    console.log("calculating FR-07", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-07 answer A: " + answer.answerA);
+            console.log("FR-07 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-07 not answered");
+        }
+    });
+  }
+  
+  private calculateFR08(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-08");
+
+    console.log("calculating FR-08", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-08 answer A: " + answer.answerA);
+            console.log("FR-08 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-08 not answered");
+        }
+    });
+  }
+
+  private calculateFR09(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-09");
+
+    console.log("calculating FR-09", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-09 answer A: " + answer.answerA);
+            console.log("FR-09 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-09 not answered");
+        }
+    });
+  }
+  
+  private calculateFR10(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-10");
+
+    console.log("calculating FR-10", answer);
+
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        console.log("answered");
+        
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("FR-10 answer A: " + answer.answerA);
+            console.log("FR-10 answer B: " + answer.answerB);
+        }
+        else {
+            console.log("FR-10 not answered");
+        }
+    });
+ }
+
   private calculateFR11(evaluation: Evaluation) {
       let answer: Answer = new Answer("FR-11");
 
