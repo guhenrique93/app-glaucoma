@@ -79,7 +79,7 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        this.navCtrl.push(EvaluationFR11Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
     });  
   }
 }

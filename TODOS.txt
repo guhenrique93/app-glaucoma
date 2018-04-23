@@ -9,9 +9,15 @@
 -internacionalizar o app (engloba alguns dos itens acima)
 -adicionar as dicas dependendo das respostas, contidas no email "Faces Finais do App"
 -mudança no cálculo do risco poupulacional geral - email risco poupulacional geral corrigido
-
+-fator de risco não descartado
 
 -obter personalizadamente os valores das respostas para o cálculo
--atualizar FR-06, conforme email
+-atualizar FR-06, conforme email - OK
 -seguir a planilha para o cálculo
 -codificar o cálculo dos fatores de risco
+
+
+
+DÚVIDAS:
+-Quais seriam os enquadramentos adequados para as diferentes alternativas e valores no gabarito para o cálculo do FR-07?
+-mesma coisa da dúvida acima para o FR-08 e suas variações

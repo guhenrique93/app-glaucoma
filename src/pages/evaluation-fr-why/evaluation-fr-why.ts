@@ -54,6 +54,11 @@ export class EvaluationFRWhyPage {
   }
 
   onSubmit(): void {
+    if (!this.answer.detailsWhy)
+    {
+        this.answer.detailsWhy = "";
+    }
+
     this.evaluationService.saveAnswer(this.evaluation, this.answer);
 
     this.navCtrl.push(this.destinationPage, {evaluation: this.evaluation});

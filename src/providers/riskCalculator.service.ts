@@ -8,9 +8,12 @@ import { Injectable } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 
 import { BaseService } from './base.service';
+import { Score } from '../models/score.model';
 
 @Injectable()
 export class RiskCalculatorService extends BaseService {
+
+    totalScore = new Score();
 
   constructor(
     public af: AngularFire,
@@ -22,6 +25,16 @@ export class RiskCalculatorService extends BaseService {
 
   calculateRisk(evaluation: Evaluation) {
     console.log("CALCULATING RISK...");
+    
+    this.calculateFR01(evaluation);
+    this.calculateFR02(evaluation);
+    this.calculateFR04(evaluation);
+    this.calculateFR05(evaluation);
+    this.calculateFR06(evaluation);
+    this.calculateFR07(evaluation);
+    this.calculateFR08(evaluation);
+    this.calculateFR09(evaluation);
+    this.calculateFR10(evaluation);
     this.calculateFR11(evaluation);
     this.calculateFR12(evaluation);
   }
@@ -30,6 +43,9 @@ export class RiskCalculatorService extends BaseService {
     console.log("calculating FR-01");
 
     //CALCULATE AGE FROM BIRTHDAY
+
+    this.totalScore.LeftEye += 2;
+    this.totalScore.RightEye += 2;
   }
 
   private calculateFR02(evaluation: Evaluation) {
@@ -226,10 +242,6 @@ export class RiskCalculatorService extends BaseService {
   private calculateFR11(evaluation: Evaluation) {
       let answer: Answer = new Answer("FR-11");
 
-      console.log("calculating FR-11", answer);
-      //console.log("EVALUATION UID", evaluation.uid);
-      //console.log("EVALUATION USER ID", evaluation.userId);
-
       this.evaluationService.getAnswer(evaluation, answer)
       .subscribe((savedAnswer: Answer) => {
           console.log("answered");
@@ -248,10 +260,6 @@ export class RiskCalculatorService extends BaseService {
 
   private calculateFR12(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-12");
-
-    console.log("calculating FR-12", answer);
-    //console.log("EVALUATION UID", evaluation.uid);
-    //console.log("EVALUATION USER ID", evaluation.userId);
 
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
