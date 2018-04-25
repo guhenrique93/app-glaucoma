@@ -12,6 +12,7 @@ import { User } from "../../models/user.model";
 import firebase from "firebase";
 import { EvaluationFR11Page } from '../evaluation-fr-11/evaluation-fr-11';
 import { RiskExibitionPage } from '../risk-exibition/risk-exibition';
+import { EvaluationFR8Page } from '../evaluation-fr-08/evaluation-fr-08';
 
 @Component({
   selector: 'page-evaluation',
@@ -80,9 +81,9 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        //inicio voltar
-        //this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
-        this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
+        //inicio preenchimento da avaliaçaõ de risco - voltar
+        this.navCtrl.push(EvaluationFR11Page, {evaluation: evaluation}); 
+        //this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }
 }

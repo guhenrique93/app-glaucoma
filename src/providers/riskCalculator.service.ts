@@ -34,7 +34,7 @@ export class RiskCalculatorService extends BaseService {
     this.calculateFR01(evaluation);
     this.calculateFR02(evaluation);
     this.calculateFR03(evaluation);
-    /*this.calculateFR04(evaluation);
+    this.calculateFR04(evaluation);
     this.calculateFR05(evaluation);
     this.calculateFR06(evaluation);
     this.calculateFR07(evaluation);
@@ -42,7 +42,7 @@ export class RiskCalculatorService extends BaseService {
     this.calculateFR09(evaluation);
     this.calculateFR10(evaluation);
     this.calculateFR11(evaluation);
-    this.calculateFR12(evaluation);*/
+    this.calculateFR12(evaluation);
   }
 
   private calculateFR01(evaluation: Evaluation) {
@@ -54,11 +54,16 @@ export class RiskCalculatorService extends BaseService {
 
                 let scoreAge: number;
 
-                if (age < 40) {
+                if (age < 40) 
+                {
                     scoreAge = 0;
-                } else if (age < 59) {
+                } 
+                else if (age < 59) 
+                {
                     scoreAge = 2;
-                } else { //age >= 60
+                } 
+                else //age >= 60
+                { 
                     scoreAge = 4;
                 }
 
@@ -99,7 +104,7 @@ export class RiskCalculatorService extends BaseService {
 
                 case "parda":
                 {
-                    scoreRace = 4
+                    scoreRace = 4;
                 }
                 break;
 
@@ -150,13 +155,13 @@ export class RiskCalculatorService extends BaseService {
 
                 case "10":
                 {
-                    scoreRightEye = 4
+                    scoreRightEye = 4;
                 }
                 break;
 
-                case "10":
+                case "30":
                 {
-                    scoreRightEye = 6
+                    scoreRightEye = 6;
                 }
                 break;
 
@@ -188,13 +193,13 @@ export class RiskCalculatorService extends BaseService {
 
                 case "10":
                 {
-                    scoreLeftEye = 4
+                    scoreLeftEye = 4;
                 }
                 break;
 
-                case "10":
+                case "30":
                 {
-                    scoreLeftEye = 6
+                    scoreLeftEye = 6;
                 }
                 break;
 
@@ -218,17 +223,89 @@ export class RiskCalculatorService extends BaseService {
   private calculateFR04(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-04");
 
-    console.log("calculating FR-04", answer);
-
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-04 answer A: " + answer.answerA);
-            console.log("FR-04 answer B: " + answer.answerB);
+            console.log("calculating FR-04", answer);
+
+            let scoreRightEye: number;
+
+            switch(answer.answerRE)
+            {
+                case "0":
+                {
+                    scoreRightEye = 0;
+                }
+                break;
+
+                case "15":
+                {
+                    scoreRightEye = 2;
+                }
+                break;
+
+                case "-60":
+                {
+                    scoreRightEye = 4;
+                }
+                break;
+
+                case "+60":
+                {
+                    scoreRightEye = 6;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedRE += 6;
+                }
+                break;
+            }
+
+            this.totalScore.rightEye += scoreRightEye;
+
+
+            let scoreLeftEye: number;
+
+            switch(answer.answerLE)
+            {
+                case "0":
+                {
+                    scoreLeftEye = 0;
+                }
+                break;
+
+                case "15":
+                {
+                    scoreLeftEye = 2;
+                }
+                break;
+
+                case "-60":
+                {
+                    scoreLeftEye = 4;
+                }
+                break;
+
+                case "+60":
+                {
+                    scoreLeftEye = 6;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedLE += 6;
+                }
+                break;
+            }
+
+            this.totalScore.leftEye += scoreLeftEye;
+
+            console.log("score após FR04: ", this.totalScore);
         }
         else {
             console.log("FR-04 not answered");
@@ -239,17 +316,89 @@ export class RiskCalculatorService extends BaseService {
   private calculateFR05(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-05");
 
-    console.log("calculating FR-05", answer);
-
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-05 answer A: " + answer.answerA);
-            console.log("FR-05 answer B: " + answer.answerB);
+            console.log("calculating FR-05", answer);
+
+            let scoreRightEye: number;
+
+            switch(answer.answerRE)
+            {
+                case "0":
+                {
+                    scoreRightEye = 0;
+                }
+                break;
+
+                case "30":
+                {
+                    scoreRightEye = 2;
+                }
+                break;
+
+                case "-180":
+                {
+                    scoreRightEye = 4;
+                }
+                break;
+
+                case "+180":
+                {
+                    scoreRightEye = 8;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedRE += 8;
+                }
+                break;
+            }
+
+            this.totalScore.rightEye += scoreRightEye;
+
+
+            let scoreLeftEye: number;
+
+            switch(answer.answerLE)
+            {
+                case "0":
+                {
+                    scoreLeftEye = 0;
+                }
+                break;
+
+                case "30":
+                {
+                    scoreLeftEye = 2;
+                }
+                break;
+
+                case "-180":
+                {
+                    scoreLeftEye = 4;
+                }
+                break;
+
+                case "+180":
+                {
+                    scoreLeftEye = 8;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedLE += 8;
+                }
+                break;
+            }
+
+            this.totalScore.leftEye += scoreLeftEye;
+
+            console.log("score após FR05: ", this.totalScore);
         }
         else {
             console.log("FR-05 not answered");
@@ -258,21 +407,79 @@ export class RiskCalculatorService extends BaseService {
   }
   
   private calculateFR06(evaluation: Evaluation) {
-    //TODO: Atualizar o FR06 conforme email
-
     let answer: Answer = new Answer("FR-06");
-
-    console.log("calculating FR-06", answer);
 
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-06 answer A: " + answer.answerA);
-            console.log("FR-06 answer B: " + answer.answerB);
+            console.log("calculating FR-06", answer);
+
+            let scoreRightEye: number;
+
+            switch(answer.answerRE)
+            {
+                case "0":
+                {
+                    scoreRightEye = 0;
+                }
+                break;
+
+                case "-5":
+                {
+                    scoreRightEye = 4;
+                }
+                break;
+
+                case "+5":
+                {
+                    scoreRightEye = 8;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedRE += 8;
+                }
+                break;
+            }
+
+            this.totalScore.rightEye += scoreRightEye;
+
+
+            let scoreLeftEye: number;
+
+            switch(answer.answerLE)
+            {
+                case "0":
+                {
+                    scoreLeftEye = 0;
+                }
+                break;
+
+                case "-5":
+                {
+                    scoreLeftEye = 4;
+                }
+                break;
+
+                case "+5":
+                {
+                    scoreLeftEye = 8;
+                }
+                break;
+
+                default: //caso o usuário não tenha respondido a questão com alguma das alternativas
+                {
+                    this.totalScore.riskNotDiscartedLE += 8;
+                }
+                break;
+            }
+
+            this.totalScore.leftEye += scoreLeftEye;
+
+            console.log("score após FR06: ", this.totalScore);
         }
         else {
             console.log("FR-06 not answered");
@@ -283,17 +490,43 @@ export class RiskCalculatorService extends BaseService {
   private calculateFR07(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-07");
 
-    console.log("calculating FR-07", answer);
-
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-07 answer A: " + answer.answerA);
-            console.log("FR-07 answer B: " + answer.answerB);
+            console.log("calculating FR-07", answer);
+            
+            let score: number = 0;
+
+            if (typeof answer.answerA === "undefined") 
+            {
+                if (typeof answer.answerB === "undefined") 
+                {
+                    this.totalScore.riskNotDiscartedRE += 16;
+                    this.totalScore.riskNotDiscartedLE += 16;
+                }
+                else
+                {
+                    if (answer.answerB == "2")
+                    {
+                        score = 15;
+                    }
+                    else //3
+                    {
+                        score = 16;
+                    }
+                }
+            }
+            else    
+            {
+                score = 14;
+            }
+
+            this.totalScore.rightEye += score;
+            this.totalScore.leftEye += score;
+
+            console.log("score após FR07: ", this.totalScore);
         }
         else {
             console.log("FR-07 not answered");
@@ -302,40 +535,72 @@ export class RiskCalculatorService extends BaseService {
   }
   
   private calculateFR08(evaluation: Evaluation) {
-    let answer: Answer = new Answer("FR-08");
-
-    console.log("calculating FR-08", answer);
-
-    this.evaluationService.getAnswer(evaluation, answer)
-    .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
-        if (savedAnswer) {
-            answer = savedAnswer;
-
-            console.log("FR-08 answer A: " + answer.answerA);
-            console.log("FR-08 answer B: " + answer.answerB);
-        }
-        else {
-            console.log("FR-08 not answered");
-        }
-    });
+ 
   }
 
   private calculateFR09(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-09");
 
-    console.log("calculating FR-09", answer);
-
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-09 answer A: " + answer.answerA);
-            console.log("FR-09 answer B: " + answer.answerB);
+            console.log("calculating FR-09", answer);
+
+            if (typeof answer.answerRE === "undefined") {
+                this.totalScore.riskNotDiscartedRE += 16;
+            } else {
+                let scoreRightEye: number;
+                let answerRightEye: number = parseInt(answer.answerRE);
+
+                if (answerRightEye < 19)
+                {
+                    scoreRightEye = 0;
+                }
+                else if (answerRightEye < 25)
+                {
+                    scoreRightEye = 4;
+                }
+                else if (answerRightEye < 29)
+                {
+                    scoreRightEye = 8;
+                }
+                else    
+                {
+                    scoreRightEye = 16;
+                }
+
+                this.totalScore.rightEye += scoreRightEye;
+            }
+
+            if (typeof answer.answerLE === "undefined") {
+                this.totalScore.riskNotDiscartedLE += 16;
+            } else {
+                let scoreLeftEye: number;
+                let answerLeftEye: number = parseInt(answer.answerLE);
+
+                if (answerLeftEye < 19)
+                {
+                    scoreLeftEye = 0;
+                }
+                else if (answerLeftEye < 25)
+                {
+                    scoreLeftEye = 4;
+                }
+                else if (answerLeftEye < 29)
+                {
+                    scoreLeftEye = 8;
+                }
+                else    
+                {
+                    scoreLeftEye = 16;
+                }
+
+                this.totalScore.leftEye += scoreLeftEye;
+            }
+
+            console.log("score após FR09: ", this.totalScore);
         }
         else {
             console.log("FR-09 not answered");
@@ -345,60 +610,118 @@ export class RiskCalculatorService extends BaseService {
   
   private calculateFR10(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-10");
-
-    console.log("calculating FR-10", answer);
-
+/*
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-10 answer A: " + answer.answerA);
-            console.log("FR-10 answer B: " + answer.answerB);
+            console.log("calculating FR-10", answer);
+
+            if (typeof answer.answerA === "undefined") {
+                //this.totalScore.riskNotDiscartedRE += 16;
+            } else {
+                let scoreRightEye: number;
+                let answerRightEye: number = parseInt(answer.answerRE);
+
+                if (answerRightEye < 19)
+                {
+                    scoreRightEye = 0;
+                }
+                else if (answerRightEye < 25)
+                {
+                    scoreRightEye = 4;
+                }
+                else if (answerRightEye < 29)
+                {
+                    scoreRightEye = 8;
+                }
+                else    
+                {
+                    scoreRightEye = 16;
+                }
+
+                this.totalScore.rightEye += scoreRightEye;
+            }
+
+            if (typeof answer.answerLE === "undefined") {
+                this.totalScore.riskNotDiscartedLE += 16;
+            } else {
+                let scoreLeftEye: number;
+                let answerLeftEye: number = parseInt(answer.answerLE);
+
+                if (answerLeftEye < 19)
+                {
+                    scoreLeftEye = 0;
+                }
+                else if (answerLeftEye < 25)
+                {
+                    scoreLeftEye = 4;
+                }
+                else if (answerLeftEye < 29)
+                {
+                    scoreLeftEye = 8;
+                }
+                else    
+                {
+                    scoreLeftEye = 16;
+                }
+
+                this.totalScore.leftEye += scoreLeftEye;
+            }
+
+            console.log("score após FR10: ", this.totalScore);
         }
         else {
             console.log("FR-10 not answered");
         }
-    });
+    });*/
  }
 
   private calculateFR11(evaluation: Evaluation) {
-      let answer: Answer = new Answer("FR-11");
-
-      this.evaluationService.getAnswer(evaluation, answer)
-      .subscribe((savedAnswer: Answer) => {
-          console.log("answered");
-          
-          if (savedAnswer) {
-              answer = savedAnswer;
-
-              console.log("FR-11 answer A: " + answer.answerA);
-              console.log("FR-11 answer B: " + answer.answerB);
-          }
-          else {
-              console.log("FR-11 not answered");
-          }
-      });
-  }
-
-  private calculateFR12(evaluation: Evaluation) {
-    let answer: Answer = new Answer("FR-12");
-
+    let answer: Answer = new Answer("FR-11");
+/*
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
-        console.log("answered");
-        
         if (savedAnswer) {
             answer = savedAnswer;
 
-            console.log("FR-12 answer A: " + answer.answerA);
-            console.log("FR-12 answer B: " + answer.answerB);
+            console.log("calculating FR-11", answer);
+
+            let score: number = 0;
+
+            if (typeof answer.why === "undefined") 
+            {
+                if (answer.answerA == "-20" && answer.answerB == "-30")
+                {
+
+                }
+            } 
+            else 
+            {
+                if (answer.why == "nunca")
+                {
+                    score = 0;
+                }
+                else if (answer.why == "compreensao")
+                {
+                    this.totalScore.riskNotDiscartedRE += 6;
+                    this.totalScore.riskNotDiscartedLE += 6;
+                }
+            }
+
+            this.totalScore.rightEye += score;
+            this.totalScore.leftEye += score;
+
+            console.log("score após FR11: ", this.totalScore);
         }
         else {
-            console.log("FR-12 not answered");
+            console.log("FR-11 not answered");
         }
-    });
-}
+    });*/
+  }
+
+  private calculateFR12(evaluation: Evaluation) {
+
+  }
 }

@@ -21,3 +21,7 @@
 DÚVIDAS:
 -Quais seriam os enquadramentos adequados para as diferentes alternativas e valores no gabarito para o cálculo do FR-07?
 -mesma coisa da dúvida acima para o FR-08 e suas variações
+-confirmar RDN dos FRs 03, 08
+-verificar se devem ser contabilizados PAD ou PAS informados isoladamente no FR-10
+-reestruturar página e método de cálculo do FR-09 para que usem a estrutura answerA e answerB em vez de answerRE e answerLE
+-confirmar as alternativas do FR-11, que não estão batendo com as opções no gabarito - exclui-se a opção há menos de 10 anos?
