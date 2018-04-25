@@ -52,5 +52,31 @@ export class UserService extends BaseService{
       return users.length > 0
     }).catch(this.handleObservableError);
   }
-  
+
+  getAge(userID: string): Observable<number> {
+    return this.af.database.list(`/users`, { 
+      preserveSnapshot: true,
+      query: {
+        orderByChild: 'uid',
+        equalTo: userID,
+        limitToFirst: 1
+      }
+    })
+    .map(snapshots => {
+      let user = snapshots[0].val() as User;
+
+      var today = new Date();
+      var birthDate = new Date(user.birthday);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+      {
+          age--;
+      }
+      return age;
+    })
+    .catch(this.handleObservableError);
+  }
+
 }

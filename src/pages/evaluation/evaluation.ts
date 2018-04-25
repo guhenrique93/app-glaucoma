@@ -11,6 +11,7 @@ import { NavController, NavParams, MenuController, ModalController } from 'ionic
 import { User } from "../../models/user.model";
 import firebase from "firebase";
 import { EvaluationFR11Page } from '../evaluation-fr-11/evaluation-fr-11';
+import { RiskExibitionPage } from '../risk-exibition/risk-exibition';
 
 @Component({
   selector: 'page-evaluation',
@@ -79,7 +80,9 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
+        //inicio voltar
+        //this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
+        this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }
 }

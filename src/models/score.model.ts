@@ -1,8 +1,14 @@
 export class Score {    
 
-    public RightEye: number;    
-    public LeftEye: number;    
-    public riskNotDiscarted: number;    
+    public rightEye: number;    
+    public leftEye: number;    
+    public riskNotDiscartedRE: number;    
+    public riskNotDiscartedLE: number;    
     
-    constructor(){}
+    constructor(){
+        this.rightEye = 0;
+        this.leftEye = 0;
+        this.riskNotDiscartedRE = 0;
+        this.riskNotDiscartedLE = 0;
+    }
 }
