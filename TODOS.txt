@@ -15,6 +15,7 @@
 -atualizar FR-06, conforme email - OK
 -seguir a planilha para o cálculo
 -codificar o cálculo dos fatores de risco
+-tela do FR-12 (atividade física) permitir avançar no caso de resposta de que não faz atividade nenhuma
 
 
 
@@ -25,3 +26,9 @@ DÚVIDAS:
 -verificar se devem ser contabilizados PAD ou PAS informados isoladamente no FR-10
 -reestruturar página e método de cálculo do FR-09 para que usem a estrutura answerA e answerB em vez de answerRE e answerLE
 -confirmar as alternativas do FR-11, que não estão batendo com as opções no gabarito - exclui-se a opção há menos de 10 anos?
+
+
+DÚVIDAS email
+-FR-08
+-FR-10 - OK
+-RDNs - seguir a tabela mesmo - OK

@@ -13,6 +13,7 @@ import firebase from "firebase";
 import { EvaluationFR11Page } from '../evaluation-fr-11/evaluation-fr-11';
 import { RiskExibitionPage } from '../risk-exibition/risk-exibition';
 import { EvaluationFR8Page } from '../evaluation-fr-08/evaluation-fr-08';
+import { EvaluationFR10Page } from '../evaluation-fr-10/evaluation-fr-10';
 
 @Component({
   selector: 'page-evaluation',
@@ -82,7 +83,7 @@ export class EvaluationPage {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
         //inicio preenchimento da avaliaçaõ de risco - voltar
-        this.navCtrl.push(EvaluationFR11Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR10Page, {evaluation: evaluation}); 
         //this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }

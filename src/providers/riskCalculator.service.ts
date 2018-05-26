@@ -167,7 +167,7 @@ export class RiskCalculatorService extends BaseService {
 
                 default: //caso o usuário não tenha respondido a questão com alguma das alternativas
                 {
-                    this.totalScore.riskNotDiscartedRE += 6;
+                    this.totalScore.riskNotDiscartedRE += 2;
                 }
                 break;
             }
@@ -205,7 +205,7 @@ export class RiskCalculatorService extends BaseService {
 
                 default: //caso o usuário não tenha respondido a questão com alguma das alternativas
                 {
-                    this.totalScore.riskNotDiscartedLE += 6;
+                    this.totalScore.riskNotDiscartedLE += 2;
                 }
                 break;
             }
@@ -503,8 +503,8 @@ export class RiskCalculatorService extends BaseService {
             {
                 if (typeof answer.answerB === "undefined") 
                 {
-                    this.totalScore.riskNotDiscartedRE += 16;
-                    this.totalScore.riskNotDiscartedLE += 16;
+                    this.totalScore.riskNotDiscartedRE += 8;
+                    this.totalScore.riskNotDiscartedLE += 8;
                 }
                 else
                 {
@@ -610,7 +610,7 @@ export class RiskCalculatorService extends BaseService {
   
   private calculateFR10(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-10");
-/*
+
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
         if (savedAnswer) {
@@ -618,56 +618,31 @@ export class RiskCalculatorService extends BaseService {
 
             console.log("calculating FR-10", answer);
 
-            if (typeof answer.answerA === "undefined") {
-                //this.totalScore.riskNotDiscartedRE += 16;
+            if (typeof answer.answerA === "undefined" || answer.answerB === "undefined") {
+                this.totalScore.riskNotDiscartedRE += 4;
+                this.totalScore.riskNotDiscartedLE += 4;
             } else {
-                let scoreRightEye: number;
-                let answerRightEye: number = parseInt(answer.answerRE);
+                let score: number;
+                
+                //a (PAD): -50, -60, +60
+                //b (PAS): -60, -70, +70
 
-                if (answerRightEye < 19)
-                {
-                    scoreRightEye = 0;
-                }
-                else if (answerRightEye < 25)
-                {
-                    scoreRightEye = 4;
-                }
-                else if (answerRightEye < 29)
-                {
-                    scoreRightEye = 8;
-                }
-                else    
-                {
-                    scoreRightEye = 16;
+                if (answer.answerA == "-50" && answer.answerB == "-60") {
+                    score = 8;
                 }
 
-                this.totalScore.rightEye += scoreRightEye;
-            }
-
-            if (typeof answer.answerLE === "undefined") {
-                this.totalScore.riskNotDiscartedLE += 16;
-            } else {
-                let scoreLeftEye: number;
-                let answerLeftEye: number = parseInt(answer.answerLE);
-
-                if (answerLeftEye < 19)
-                {
-                    scoreLeftEye = 0;
-                }
-                else if (answerLeftEye < 25)
-                {
-                    scoreLeftEye = 4;
-                }
-                else if (answerLeftEye < 29)
-                {
-                    scoreLeftEye = 8;
-                }
-                else    
-                {
-                    scoreLeftEye = 16;
+                if (answer.answerA == "-50" && answer.answerB == "-70") {
+                    score = 6;
                 }
 
-                this.totalScore.leftEye += scoreLeftEye;
+                if (answer.answerA == "-60" && answer.answerB == "-70") {
+                    score = 4;
+                }
+
+                if (score > 0) {
+                    this.totalScore.rightEye += score;
+                    this.totalScore.leftEye += score;
+                }
             }
 
             console.log("score após FR10: ", this.totalScore);
@@ -675,7 +650,7 @@ export class RiskCalculatorService extends BaseService {
         else {
             console.log("FR-10 not answered");
         }
-    });*/
+    });
  }
 
   private calculateFR11(evaluation: Evaluation) {
