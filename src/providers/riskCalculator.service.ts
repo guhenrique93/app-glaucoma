@@ -697,6 +697,58 @@ export class RiskCalculatorService extends BaseService {
   }
 
   private calculateFR12(evaluation: Evaluation) {
+    let answer: Answer = new Answer("FR-12");
 
+    this.evaluationService.getAnswer(evaluation, answer)
+    .subscribe((savedAnswer: Answer) => {
+        if (savedAnswer) {
+            answer = savedAnswer;
+
+            console.log("calculating FR-12", answer);
+
+            let score: number;
+            
+            //a (frequência): 0, 1-3, +4
+            //b (duração): -15, -30, +30
+
+            if (answer.answerA == "0" && answer.answerB) {
+                score = 2;
+            }
+
+            if (answer.answerA == "1-3" && answer.answerB == "-15") {
+                score = -2;
+            }
+
+            if (answer.answerA == "+4" && answer.answerB == "-15") {
+                score = -4;
+            }
+
+            if (answer.answerA == "1-3" && answer.answerB == "-30") {
+                score = -4;
+            }
+
+            if (answer.answerA == "+4" && answer.answerB == "-30") {
+                score = -6;
+            }
+
+            if (answer.answerA == "1-3" && answer.answerB == "+30") {
+                score = -6;
+            }
+
+            if (answer.answerA == "+4" && answer.answerB == "+30") {
+                score = -8;
+            }
+
+            if (score) {
+                this.totalScore.rightEye += score;
+                this.totalScore.leftEye += score;
+            }
+
+            console.log("score após FR12: ", this.totalScore);
+        }
+        else {
+            console.log("FR-12 not answered");
+        }
+    });
   }
 }

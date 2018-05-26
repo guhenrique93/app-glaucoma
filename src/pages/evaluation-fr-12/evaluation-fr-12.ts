@@ -47,7 +47,7 @@ export class EvaluationFR12Page {
 
   checkFields(){
     return (group: FormGroup): {[key: string]: any} => {
-      if (group.controls['riskFactorA'].value == '1') {
+      if (group.controls['riskFactorA'].value == '0') {
         return null;
       }
       else if (group.controls['riskFactorA'].value && group.controls['riskFactorB'].value) {
