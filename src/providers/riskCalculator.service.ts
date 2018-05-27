@@ -655,7 +655,7 @@ export class RiskCalculatorService extends BaseService {
 
   private calculateFR11(evaluation: Evaluation) {
     let answer: Answer = new Answer("FR-11");
-/*
+
     this.evaluationService.getAnswer(evaluation, answer)
     .subscribe((savedAnswer: Answer) => {
         if (savedAnswer) {
@@ -667,9 +667,27 @@ export class RiskCalculatorService extends BaseService {
 
             if (typeof answer.why === "undefined") 
             {
+                //a (unidades): -20, +20
+                //b (tempo): -10, -30, +30
+                
                 if (answer.answerA == "-20" && answer.answerB == "-30")
                 {
+                    score = 2;
+                }
 
+                if (answer.answerA == "-20" && answer.answerB == "+30")
+                {
+                    score = 3;
+                }
+
+                if (answer.answerA == "+20" && answer.answerB == "-30")
+                {
+                    score = 4;
+                }
+
+                if (answer.answerA == "+20" && answer.answerB == "+30")
+                {
+                    score = 6;
                 }
             } 
             else 
@@ -678,11 +696,14 @@ export class RiskCalculatorService extends BaseService {
                 {
                     score = 0;
                 }
+                /*
+                //risco não descartado 
                 else if (answer.why == "compreensao")
                 {
                     this.totalScore.riskNotDiscartedRE += 6;
                     this.totalScore.riskNotDiscartedLE += 6;
                 }
+                */
             }
 
             this.totalScore.rightEye += score;
@@ -693,7 +714,7 @@ export class RiskCalculatorService extends BaseService {
         else {
             console.log("FR-11 not answered");
         }
-    });*/
+    });
   }
 
   private calculateFR12(evaluation: Evaluation) {
