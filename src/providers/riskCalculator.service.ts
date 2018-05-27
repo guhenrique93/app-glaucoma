@@ -26,7 +26,7 @@ export class RiskCalculatorService extends BaseService {
       super();
   }
 
-  calculateRisk(evaluation: Evaluation) {
+  calculateRisk(evaluation: Evaluation) : Score {
     console.log("CALCULATING RISK...");
  
     console.log("score zerado: ", this.totalScore);
@@ -43,6 +43,8 @@ export class RiskCalculatorService extends BaseService {
     this.calculateFR10(evaluation);
     this.calculateFR11(evaluation);
     this.calculateFR12(evaluation);
+
+    return this.totalScore;
   }
 
   private calculateFR01(evaluation: Evaluation) {

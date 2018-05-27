@@ -4,6 +4,7 @@ import { AuthService } from './../../providers/auth.service';
 import { Evaluation } from './../../models/evaluation.model';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Score } from '../../models/score.model';
 
 @Component({
   selector: 'page-risk-exibition',
@@ -12,6 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class RiskExibitionPage {
 
   evaluation: Evaluation;
+  score: Score;
   
   constructor
   (
@@ -23,6 +25,7 @@ export class RiskExibitionPage {
   ) {
       this.evaluation = navParams.get('evaluation') as Evaluation; 
 
+      this.score = new Score();
       this.calculateRisk();
   }
 
@@ -37,7 +40,8 @@ export class RiskExibitionPage {
         if (evaluations) {
           console.log(evaluations.length + " avaliações");
           evaluations.forEach(evaluation => {
-              this.riskCalculatorService.calculateRisk(evaluation);
+              this.score = this.riskCalculatorService.calculateRisk(evaluation);
+              
           });
         } else {
           console.log("Nenhuma avaliação para o usuário");
