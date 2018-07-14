@@ -16,6 +16,8 @@
 -seguir a planilha para o cálculo
 -codificar o cálculo dos fatores de risco
 
+-tratamento de erros, promises, etc
+
 
 
 DÚVIDAS:

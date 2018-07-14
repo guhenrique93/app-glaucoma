@@ -40,8 +40,12 @@ export class RiskExibitionPage {
         if (evaluations) {
           console.log(evaluations.length + " avaliações");
           evaluations.forEach(evaluation => {
-              this.score = this.riskCalculatorService.calculateRisk(evaluation);
-              
+              this.riskCalculatorService.calculateRisk(evaluation)
+                .then((score: Score) => {
+                  console.log("Pontuação: ", score);                  
+                  this.score = score;
+                });
+
           });
         } else {
           console.log("Nenhuma avaliação para o usuário");

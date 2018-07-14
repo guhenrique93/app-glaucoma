@@ -10,10 +10,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams, MenuController, ModalController } from 'ionic-angular';
 import { User } from "../../models/user.model";
 import firebase from "firebase";
-import { EvaluationFR11Page } from '../evaluation-fr-11/evaluation-fr-11';
 import { RiskExibitionPage } from '../risk-exibition/risk-exibition';
-import { EvaluationFR8Page } from '../evaluation-fr-08/evaluation-fr-08';
-import { EvaluationFR10Page } from '../evaluation-fr-10/evaluation-fr-10';
 
 @Component({
   selector: 'page-evaluation',
@@ -38,10 +35,10 @@ export class EvaluationPage {
   }
 
   ionViewCanEnter(): Promise<boolean> {
-       this.userService.currentUser
+      this.userService.currentUser
       .subscribe((user: User) => {
         this.user = user;
-      })
+      });
       
       return this.authService.authenticated;      
   }
@@ -83,7 +80,7 @@ export class EvaluationPage {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
         //inicio preenchimento da avaliaçaõ de risco - voltar
-        this.navCtrl.push(EvaluationFR12Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
         //this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }
