@@ -1,4 +1,4 @@
--cadastro de lugar em BD
+-cadastro de cidade em BD
 -validacao do email e senha com mensagens
 -mostrar modais das escolhas para 'perguntar depois' e 'nao' do termo de uso
 -cadastro e utilizacao do termo de uso no BD
@@ -8,27 +8,26 @@
 -reorganizar os níveis para as respostas de BD - OK
 -internacionalizar o app (engloba alguns dos itens acima)
 -adicionar as dicas dependendo das respostas, contidas no email "Faces Finais do App"
--mudança no cálculo do risco poupulacional geral - email risco poupulacional geral corrigido
+-mudança no cálculo do risco populacional geral - email risco poupulacional geral corrigido
 -fator de risco não descartado
 
--obter personalizadamente os valores das respostas para o cálculo
+-obter personalizadamente os valores das respostas para o cálculo - OK
 -atualizar FR-06, conforme email - OK
 -seguir a planilha para o cálculo
--codificar o cálculo dos fatores de risco
+-codificar o cálculo dos fatores de risco - OK
 
 -tratamento de erros, promises, etc
 
 
 
 DÚVIDAS:
--Quais seriam os enquadramentos adequados para as diferentes alternativas e valores no gabarito para o cálculo do FR-07?
--mesma coisa da dúvida acima para o FR-08 e suas variações
--confirmar RDN dos FRs 03, 08
 -reestruturar página e método de cálculo do FR-09 para que usem a estrutura answerA e answerB em vez de answerRE e answerLE
 -confirmar as alternativas do FR-11, que não estão batendo com as opções no gabarito - exclui-se a opção há menos de 10 anos?
 
 
 DÚVIDAS email
 -FR-08
+    -adequar tela - OK
+    -codificar o cálculo do risco
 -FR-10 - OK
 -RDNs - seguir a tabela mesmo - OK

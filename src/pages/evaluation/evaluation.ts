@@ -1,4 +1,4 @@
-import { EvaluationFR12Page } from './../evaluation-fr-12/evaluation-fr-12';
+import { EvaluationFR8Page } from './../evaluation-fr-08/evaluation-fr-08';
 import { ModalEvaluationNotFinishedPage } from './../modal-evaluation-not-finished/modal-evaluation-not-finished';
 import { FirebaseObjectObservable } from 'angularFire2';
 import { Evaluation } from './../../models/evaluation.model';
@@ -79,8 +79,8 @@ export class EvaluationPage {
   private goAnswer() {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
-        //inicio preenchimento da avaliaçaõ de risco - voltar
-        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
+        //inicio preenchimento da avaliação de risco - voltar
+        this.navCtrl.push(EvaluationFR8Page, {evaluation: evaluation}); 
         //this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }

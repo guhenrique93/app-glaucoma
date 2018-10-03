@@ -18,10 +18,13 @@ export class EvaluationFR8Page {
   evaluationForm: FormGroup;
   answeredRA: boolean = false;
   answeredRB: boolean = false;
+  answeredRC: boolean = false;
   evaluation: Evaluation;
   answer: Answer;
   showA: boolean = true;
-  textButton: string = "Avançar";
+  showB: boolean = false;
+  showC: boolean = false;
+  textButton: string = "Avançar"; //TODO: Criar constantes para alternar os textos dos dois botões
   
   constructor(
     public authService: AuthService,
@@ -35,7 +38,8 @@ export class EvaluationFR8Page {
       this.evaluationForm = this.formBuilder.group({
           why: '',      
           riskFactorA: '',
-          riskFactorB: ''
+          riskFactorB: '',
+          riskFactorC: '',
         }, {validator: this.checkFields()});
 
       this.evaluation = navParams.get('evaluation') as Evaluation; 
@@ -47,7 +51,8 @@ export class EvaluationFR8Page {
 
   checkFields(){
     return (group: FormGroup): {[key: string]: any} => {
-      if (group.controls['riskFactorA'].value && group.controls['riskFactorB'].value) {
+      if (group.controls['riskFactorA'].value && group.controls['riskFactorB'].value
+          && group.controls['riskFactorC'].value) {
         return null;
       }
       else if (group.controls['why'].value) {
@@ -94,14 +99,21 @@ export class EvaluationFR8Page {
 
     this.answer.why = null;    
   }
+  answerRC(){
+    this.answeredRC = true;
+
+    this.answer.why = null;    
+  }
 
   answerWhy(){
     this.answeredRA = false;
     this.answeredRB = false;
+    this.answeredRC = false;
     
 
     this.answer.answerA = null;
     this.answer.answerB = null;
+    this.answer.answerC = null;
   }
 
   private checkAnswer() {
@@ -128,6 +140,7 @@ export class EvaluationFR8Page {
     } else if (this.answer.why == 'nunca') {
       this.answer.answerA = null;
       this.answer.answerB = null;
+      this.answer.answerC = null;
     }
 
     this.answer.answered = true;
@@ -135,14 +148,35 @@ export class EvaluationFR8Page {
     this.evaluationService.saveAnswer(this.evaluation, this.answer);
   }
 
-  backForward(): void {
-    this.showA = !this.showA;
+  backForwardAB(): void {
+
+    if (this.showA) {
+      this.showA = false;
+      this.showB = true;
+      this.showC = false;  
+    } else if (this.showB) {
+      this.showA = true;
+      this.showB = false;
+      this.showC = false;
+    } else if (this.showC) {
+      this.showA = false;
+      this.showB = true;
+      this.showC = false;
+    }
 
     if (this.showA) {
       this.textButton = "Avançar";
     } else {
       this.textButton = "Voltar";
     }
+  }
+
+  goToPartC(): void {
+    this.showA = false;
+    this.showB = false;
+    this.showC = true;
+
+    this.textButton = "Voltar";
   }
 }
 

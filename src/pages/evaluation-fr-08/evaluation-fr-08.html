@@ -14,99 +14,105 @@
 
 <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
   <div *ngIf="showA">
-    <h4>Duração do Diabete Mellitus e Hemoglobina Glicada</h4>  
-    <ion-list radio-group formControlName="riskFactorA" text-wrap [(ngModel)]="answer.answerA">
-      
+    <h4>Duração do Diabete Mellitus</h4>  
+    <ion-list radio-group formControlName="riskFactorA" text-wrap [(ngModel)]="answer.answerA"> 
       <ion-item>
         <ion-label>Diabete Mellitus Insulino Dependente há mais de 15 e menos de 30 anos</ion-label>
         <ion-radio (ionSelect)="answerRA()" value="15"></ion-radio>
       </ion-item>
-
       <ion-item>
         <ion-label>Diabete Mellitus Insulino Dependente há mais de 30 anos</ion-label>
         <ion-radio (ionSelect)="answerRA()" value="30"></ion-radio>
       </ion-item>
-
       <ion-item>
-        <ion-label>Hemoglobina Glicada acima de 8% no último ano</ion-label>
-        <ion-radio (ionSelect)="answerRA()" value="2"></ion-radio>
+        <ion-label>Nenhuma das opções anteriores</ion-label>
+        <ion-radio (ionSelect)="answerRA()" value="0"></ion-radio>
       </ion-item>
-
-      <ion-item>
-        <ion-label>Hemoglobina Glicada acima de 9% no último ano</ion-label>
-        <ion-radio (ionSelect)="answerRA()" value="4"></ion-radio>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Diabete Mellitus há mais de 30 anos ou Hemoglobina Glicada acima de 12%</ion-label>
-        <ion-radio (ionSelect)="answerRA()" value="3"></ion-radio>
-      </ion-item>
-
     </ion-list>
   </div>
-  
-  <br/><button type="button" ion-button full (click)="backForward()">{{textButton}}</button><br/>
+  <br/><button type="button" ion-button full (click)="backForwardAB()">{{textButton}}</button><br/>
 
-  <div *ngIf="!showA">
-    <h4>Quanto à presença de complicação do Diabete Mellitus</h4>  
+  <div *ngIf="showB">
     <ion-list radio-group formControlName="riskFactorB" text-wrap [(ngModel)]="answer.answerB">
-      
-       <ion-item>
-        <ion-label>Complicação vascular periférica</ion-label>
-        <ion-radio (ionSelect)="answerRB()" value="4"></ion-radio>
-      </ion-item>
-
       <ion-item>
-        <ion-label>Complicação renal <strong>ou</strong> Complicação coronária <strong>ou</strong> complicação retiniana</ion-label>
-        <ion-radio (ionSelect)="answerRB()" value="5"></ion-radio>
+        <ion-label>Hemoglobina Glicada acima de 8% no último ano</ion-label>
+        <ion-radio (ionSelect)="answerRB()" value=">8%"></ion-radio>
       </ion-item>
-
       <ion-item>
-          <ion-label>Complicação renal <strong>e</strong> complicação retiniana <strong>ou</strong> complicação coronária <strong>e</strong> complicação retiniana</ion-label>
-        <ion-radio (ionSelect)="answerRB()" value="6"></ion-radio>
+        <ion-label>Hemoglobina Glicada acima de 9% no último ano</ion-label>
+        <ion-radio (ionSelect)="answerRB()" value=">9%"></ion-radio>
       </ion-item>
-
       <ion-item>
-        <ion-label>Nenhuma</ion-label>
+        <ion-label>Nenhuma das anteriores</ion-label>
         <ion-radio (ionSelect)="answerRB()" value="0"></ion-radio>
       </ion-item>
     </ion-list>
   </div>
   
-    <!--<div *ngIf="!answeredRA && !answeredRB">-->
-    <div>
+  <div *ngIf="showB">
+    <br/>
+    <button type="button" ion-button full (click)="goToPartC()">Avançar</button><br/>
+  </div>
+  
+  <div *ngIf="showC">
+    <h4>Quanto à presença de complicação do Diabete Mellitus</h4>  
+    <ion-list radio-group formControlName="riskFactorC" text-wrap [(ngModel)]="answer.answerC">
+      
+       <ion-item>
+        <ion-label>Complicação vascular periférica</ion-label>
+        <ion-radio (ionSelect)="answerRC()" value="CVP"></ion-radio>
+      </ion-item>
 
-      <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
-      <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
-        
-        <ion-item>
-          <ion-label>Não compreendi a questão</ion-label>
-          <ion-radio (ionSelect)="answerWhy()" value="compreensao"></ion-radio>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label>Não tenho informações sobre isto</ion-label>
-          <ion-radio (ionSelect)="answerWhy()" value="informacao"></ion-radio>
-        </ion-item>
+      <ion-item>
+        <ion-label>Complicação renal <strong>ou</strong> Complicação coronária <strong>ou</strong> complicação retiniana</ion-label>
+        <ion-radio (ionSelect)="answerRC()" value="CCR"></ion-radio>
+      </ion-item>
 
-        <ion-item>
-            <ion-label>Jamais sofri Diabete Mellitus</ion-label>
-            <ion-radio (ionSelect)="answerWhy()" value="nunca"></ion-radio>
-        </ion-item>
-    
-      </ion-list>
-    
-    </div>
+      <ion-item>
+          <ion-label>Com todas as complicações acima</ion-label>
+        <ion-radio (ionSelect)="answerRC()" value="TODAS"></ion-radio>
+      </ion-item>
 
-    <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+      <ion-item>
+        <ion-label>Nenhuma</ion-label>
+        <ion-radio (ionSelect)="answerRC()" value="0"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+  <div>
 
-  </form>
+    <h3>Caso não responda a questão, informe o motivo em uma das opções abaixo (a escolha de uma alternativa é indispensável):</h3>
+    <ion-list radio-group formControlName="why" text-wrap [(ngModel)]="answer.why">
+      
+      <ion-item>
+        <ion-label>Não compreendi a questão</ion-label>
+        <ion-radio (ionSelect)="answerWhy()" value="compreensao"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Não tenho informações sobre isto</ion-label>
+        <ion-radio (ionSelect)="answerWhy()" value="informacao"></ion-radio>
+      </ion-item>
 
-  <p>
-    <strong>Atenção:</strong>
-    <br />(a) a hemoglobina glicada ou glicosilada é um exame usual em diabéticos e estes devem conhecê-la bem;
-    <br />(b) “no último ano” se refere à média da mesma no intervalo dos últimos doze meses; idem para situação dos 12%;
-    <br />(c) complicações vasculares periféricas, renais ou cardíacas são encontradas nas formas mais severas de diabetes: veja seu prontuário ou pergunte seu médico.
+      <ion-item>
+          <ion-label>Jamais sofri Diabete Mellitus</ion-label>
+          <ion-radio (ionSelect)="answerWhy()" value="nunca"></ion-radio>
+      </ion-item>
+  
+    </ion-list>
+  
+  </div>
+
+  <button ion-button full type="submit" [disabled]="evaluationForm.invalid">Confirmar</button>
+
+</form>
+
+<p>
+  <strong>Atenção:</strong>
+  <br />(a) a hemoglobina glicada ou glicosilada é um exame usual em diabéticos e estes devem conhecê-la bem;
+  <br />(b) “no último ano” se refere à média da mesma no intervalo dos últimos doze meses; idem para situação dos 12%;
+  <br />(c) complicações vasculares periféricas, renais ou cardíacas são encontradas nas formas mais severas de diabetes: veja seu prontuário ou pergunte seu médico.
 </p>
 
 </ion-content>

@@ -5,6 +5,7 @@ export class Answer {
     public answerLE: string = null;
     public answerA: string = null;
     public answerB: string = null;
+    public answerC: string = null;
     public why: string;
     public detailsWhy: string;
     public answered: boolean;  
