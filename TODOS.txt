@@ -18,6 +18,8 @@
 
 -tratamento de erros, promises, etc
 
+-deixar de ouvir as promises quando dados na base são alterados (no cálculo de risco)
+
 
 
 DÚVIDAS:
@@ -28,6 +30,6 @@ DÚVIDAS:
 DÚVIDAS email
 -FR-08
     -adequar tela - OK
-    -codificar o cálculo do risco
+    -codificar o cálculo do risco - OK
 -FR-10 - OK
 -RDNs - seguir a tabela mesmo - OK

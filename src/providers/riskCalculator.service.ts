@@ -28,6 +28,8 @@ export class RiskCalculatorService extends BaseService {
 
   calculateRisk(evaluation: Evaluation) : Promise<Score> {
     console.log("CALCULATING RISK...");
+
+    this.totalScore = new Score();
  
     console.log("score zerado: ", this.totalScore);
     
@@ -581,10 +583,116 @@ export class RiskCalculatorService extends BaseService {
   }
   
   private calculateFR08(evaluation: Evaluation) : Promise<any> {
-    return new Promise((resolve, reject) => {
-        ///TODO: Implementar cálculo do FR08 após as adequações no formulário
+    let answer: Answer = new Answer("FR-08");
 
-        resolve();
+    /*
+    A   DM > 15 anos	2
+    B   DM > 30 anos	3
+    C   DM > 15 anos & FR8 HcA1 > 8% no último ano	4
+    D   HcA1 > 8% no último ano	2
+    E   HcA1 > 9% no último ano	4
+    F   Com complicação vascular periférica	4
+    G   Com complicação renal ou coronária ou retiniana	5
+    H   Com todas as complicações acima	6
+    I DM > 30 anos ou FR8 HcA1 > 9% U ano + QQ compl ac	8
+
+    1º grupo, A e B: só é possível uma opção;
+    2º grupo, C e D e E: só é possível uma opção;
+    3º grupo, F e G e H: só é possível uma opção;
+    4º grupo, I: exclui as demais opções e não se soma com outra;
+II     -      combinação entre subgrupos
+A ou B podem combinar com D ou com E, com F e com G. B combina também com H, só que neste caso, use uma equação para que o valor máximo seja 8, pois o máximo no FR08 é 08. Utilizemos a mesma solução para o total do FR Não Descartado.
+D ou E podem combinar com F ou G ou H. Quando E combinar com H, usamos o mesmo recurso, uma equação para que o valor máximo seja 8, pois o máximo no FR08 é 08. Utilizemos a mesma solução para o total do FR Não Descartado.
+I não combina com nenhum. Sugestão: quando ele for marcado, uma pop-up poderia aparecer avisando: a marcação deste item desmarcará automaticamente os demais.
+     */
+    return new Promise((resolve, reject) => {
+            
+        this.evaluationService.getAnswer(evaluation, answer)
+        .subscribe((savedAnswer: Answer) => {
+            if (savedAnswer) {
+                answer = savedAnswer;
+
+                console.log("calculating FR-08", answer);
+                
+                let score: number = 0;
+
+                if (typeof answer.answerA === "undefined" 
+                    && typeof answer.answerB === "undefined"
+                    && typeof answer.answerC === "undefined") 
+                {
+                    this.totalScore.riskNotDiscartedRE += 2;
+                    this.totalScore.riskNotDiscartedLE += 2;
+                } 
+                else 
+                {
+                    switch(answer.answerA)
+                    {
+                        case "15":
+                        {
+                            score += 2;
+                        }
+                        break;
+
+                        case "30":
+                        {
+                            score += 3;
+                        }
+                        break;
+                    }
+
+                    switch(answer.answerB)
+                    {
+                        case ">8%":
+                        {
+                            score += 2;
+                        }
+                        break;
+
+                        case ">9%":
+                        {
+                            score += 4;
+                        }
+                        break;
+                    }
+
+                    switch(answer.answerC)
+                    {
+                        case "CVP":
+                        {
+                            score += 4;
+                        }
+                        break;
+
+                        case "CCR":
+                        {
+                            score += 5;
+                        }
+                        break;
+
+                        case "TODAS":
+                        {
+                            score += 6;
+                        }
+                        break;
+                    }
+                }
+
+                if (score > 8) 
+                {
+                    score = 8;
+                }
+
+                this.totalScore.rightEye += score;
+                this.totalScore.leftEye += score;
+
+                console.log("score após FR08: ", this.totalScore);
+            }
+            else {
+                console.log("FR-08 not answered");
+            }
+
+            resolve();
+        });
     });
   }
 

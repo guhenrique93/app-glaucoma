@@ -36,7 +36,7 @@ export class AnswerConfirmationPage {
 
     //this.goHome();
 
-    this.navCtrl.setRoot(RiskExibitionPage, {evaluation: this.evaluation});
+    this.navCtrl.push(RiskExibitionPage, {evaluation: this.evaluation});
   }
 
   salvarDados() {
