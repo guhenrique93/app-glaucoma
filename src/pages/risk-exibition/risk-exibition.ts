@@ -9,6 +9,7 @@ import { Score } from '../../models/score.model';
 @Component({
   selector: 'page-risk-exibition',
   templateUrl: 'risk-exibition.html',
+  providers:[EvaluationService, RiskCalculatorService]
 })
 export class RiskExibitionPage {
 

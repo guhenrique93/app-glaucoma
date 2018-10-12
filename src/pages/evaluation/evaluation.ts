@@ -80,7 +80,7 @@ export class EvaluationPage {
     this.evaluationService.getCurrentEvaluation(this.user.uid)
       .subscribe((evaluation: Evaluation) => { 
         //inicio preenchimento da avaliação de risco - voltar
-        this.navCtrl.push(EvaluationFR8Page, {evaluation: evaluation}); 
+        this.navCtrl.push(EvaluationFR2Page, {evaluation: evaluation}); 
         //this.navCtrl.setRoot(RiskExibitionPage, {evaluation: evaluation});
     });  
   }

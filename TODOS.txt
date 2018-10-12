@@ -33,3 +33,9 @@ DÚVIDAS email
     -codificar o cálculo do risco - OK
 -FR-10 - OK
 -RDNs - seguir a tabela mesmo - OK
+
+tutoriais
+https://www.joshmorony.com/beginners-guide-to-getting-started-with-ionic-2/
+https://www.joshmorony.com/building-mobile-apps-with-ionic-2/
+https://www.joshmorony.com/an-in-depth-explanation-of-providers-in-ionic-2/
+https://www.joshmorony.com/how-why-and-when-to-use-providers-in-ionic-2/
